@@ -1,0 +1,248 @@
+/* ==========================================================================
+   CINEMATIC CROSS UN-REVEAL SYSTEM
+   Editorial 4-quadrant cross shutter parting outward on initial load
+   ========================================================================== */
+
+.cross-reveal-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 4 Paper Quadrants */
+.cross-quadrant {
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  background-color: var(--color-paper, #F2EFE7);
+  box-shadow: 0 0 40px rgba(28, 27, 25, 0.12);
+  will-change: transform;
+  transition: transform 0.72s cubic-bezier(0.85, 0, 0.15, 1);
+  box-sizing: border-box;
+}
+
+.cross-quadrant--top-left {
+  top: 0;
+  left: 0;
+  border-right: 1px solid rgba(28, 27, 25, 0.1);
+  border-bottom: 1px solid rgba(28, 27, 25, 0.1);
+  transform: translate3d(0, 0, 0);
+}
+
+.cross-quadrant--top-right {
+  top: 0;
+  right: 0;
+  border-left: 1px solid rgba(28, 27, 25, 0.1);
+  border-bottom: 1px solid rgba(28, 27, 25, 0.1);
+  transform: translate3d(0, 0, 0);
+}
+
+.cross-quadrant--bottom-left {
+  bottom: 0;
+  left: 0;
+  border-right: 1px solid rgba(28, 27, 25, 0.1);
+  border-top: 1px solid rgba(28, 27, 25, 0.1);
+  transform: translate3d(0, 0, 0);
+}
+
+.cross-quadrant--bottom-right {
+  bottom: 0;
+  right: 0;
+  border-left: 1px solid rgba(28, 27, 25, 0.1);
+  border-top: 1px solid rgba(28, 27, 25, 0.1);
+  transform: translate3d(0, 0, 0);
+}
+
+/* On Opening: The 4 Quadrants Part Outward to Reveal the Hero Page */
+.cross-reveal-overlay.is-opening .cross-quadrant--top-left {
+  transform: translate3d(-102%, -102%, 0);
+}
+
+.cross-reveal-overlay.is-opening .cross-quadrant--top-right {
+  transform: translate3d(102%, -102%, 0);
+}
+
+.cross-reveal-overlay.is-opening .cross-quadrant--bottom-left {
+  transform: translate3d(-102%, 102%, 0);
+}
+
+.cross-reveal-overlay.is-opening .cross-quadrant--bottom-right {
+  transform: translate3d(102%, 102%, 0);
+}
+
+/* Dividing Cross Lines */
+.cross-line {
+  position: absolute;
+  background-color: var(--color-cobalt, #334FA1);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 10001;
+  transition: opacity 0.35s ease-out, transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.cross-line--vertical {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1.5px;
+  transform: translateX(-50%);
+}
+
+.cross-line--horizontal {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1.5px;
+  transform: translateY(-50%);
+}
+
+.cross-reveal-overlay.is-opening .cross-line {
+  opacity: 0;
+}
+
+.cross-reveal-overlay.is-opening .cross-line--vertical {
+  transform: translateX(-50%) scaleY(0);
+}
+
+.cross-reveal-overlay.is-opening .cross-line--horizontal {
+  transform: translateY(-50%) scaleX(0);
+}
+
+/* Center Archival Crosshair Badge */
+.cross-center-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10002;
+  background-color: var(--color-paper-white, #FAF7F0);
+  border: 1.5px solid rgba(28, 27, 25, 0.2);
+  border-radius: 4px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 28px rgba(28, 27, 25, 0.16);
+  transition: opacity 0.35s ease-out, transform 0.45s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.cross-center-badge__icon {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-marker-red, #E34B3C);
+}
+
+.cross-center-badge__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cross-center-badge__title {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-ink-primary, #1C1B19);
+}
+
+.cross-center-badge__coords {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--color-cobalt, #334FA1);
+}
+
+.cross-reveal-overlay.is-opening .cross-center-badge {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.18);
+}
+
+/* ==========================================================================
+   NAV BAR POPPING ANIMATION (LEFT TO RIGHT SEQUENCE)
+   ========================================================================== */
+
+.nav-pop-item {
+  animation: navPopIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  will-change: transform, opacity;
+}
+
+@keyframes navPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.65) translateY(-8px);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.08) translateY(1.5px);
+  }
+  85% {
+    transform: scale(0.97) translateY(-0.5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Stagger delays from Left to Right (coordinated after cross un-reveal) */
+.nav-pop--brand {
+  animation-delay: 0.48s;
+}
+
+.nav-pop--1 {
+  animation-delay: 0.58s;
+}
+
+.nav-pop--2 {
+  animation-delay: 0.65s;
+}
+
+.nav-pop--3 {
+  animation-delay: 0.72s;
+}
+
+.nav-pop--4 {
+  animation-delay: 0.79s;
+}
+
+.nav-pop--5 {
+  animation-delay: 0.86s;
+}
+
+.nav-pop--6 {
+  animation-delay: 0.93s;
+}
+
+.nav-pop--7 {
+  animation-delay: 1.00s;
+}
+
+.nav-pop--8 {
+  animation-delay: 1.07s;
+}
+
+.nav-pop--phone {
+  animation-delay: 1.15s;
+}
+
+.nav-pop--contact {
+  animation-delay: 1.22s;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .cross-reveal-overlay {
+    display: none !important;
+  }
+  .nav-pop-item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

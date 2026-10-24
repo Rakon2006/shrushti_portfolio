@@ -1,0 +1,99 @@
+/* Editorial Typography System */
+
+.font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "liga" 1, "dlig" 1;
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "zero" 1;
+}
+
+.font-hand {
+  font-family: var(--font-hand);
+}
+
+/* Editorial Title Hierarchy */
+.editorial-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  color: var(--color-ink-primary);
+  text-wrap: balance;
+}
+
+.hero-title {
+  font-size: clamp(2.75rem, 7.5vw, 6.75rem);
+}
+
+.chapter-number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(4.5rem, 12vw, 10.5rem);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--color-ink-primary);
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--color-ink-primary);
+}
+
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.body-lead {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.55;
+  color: var(--color-ink-secondary);
+  font-weight: 400;
+}
+
+.body-reading {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-ink-secondary);
+}
+
+.field-note {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--color-marker-red);
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 2px;
+  background: rgba(28, 27, 25, 0.05);
+  color: var(--color-ink-primary);
+  border: 1px solid rgba(28, 27, 25, 0.08);
+  font-weight: 500;
+}

@@ -1,0 +1,335 @@
+/* ==========================================================================
+   TECHNICAL BLUEPRINT & PHYSICAL RESEARCH NOTEBOOK BACKGROUND SYSTEM
+   Base: #F5F1E8 | Grid: #D8D2C7 | Blue: #3455A4 | Red: #F05243 | Ink: #222222
+   ========================================================================== */
+
+:root {
+  --blueprint-base: #F5F1E8;
+  --blueprint-grid: #D8D2C7;
+  --blueprint-blue: #3455A4;
+  --blueprint-red: #F05243;
+  --blueprint-ink: #222222;
+}
+
+/* 1. Global Full-Page Background Host */
+.technical-notebook-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background-color: var(--blueprint-base);
+}
+
+/* 2. Layer 1: Graph Paper Grid with Major & Minor Lines */
+.technical-notebook-bg__grid {
+  position: absolute;
+  inset: -40px;
+  width: calc(100% + 80px);
+  height: calc(100% + 80px);
+  background-image:
+    /* Minor grid: 24px squares */
+    linear-gradient(to right, rgba(216, 210, 199, 0.38) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(216, 210, 199, 0.38) 1px, transparent 1px),
+    /* Major grid: 120px squares (every 5 minor cells) */
+    linear-gradient(to right, rgba(195, 187, 172, 0.68) 1.2px, transparent 1.2px),
+    linear-gradient(to bottom, rgba(195, 187, 172, 0.68) 1.2px, transparent 1.2px);
+  background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+  animation: blueprintGridDrift 90s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes blueprintGridDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-6px, 4px, 0);
+  }
+  100% {
+    transform: translate3d(5px, -5px, 0);
+  }
+}
+
+/* 3. Soft Ambient Highlight Sweep */
+.technical-notebook-bg__sweep {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    transparent 20%,
+    rgba(52, 85, 164, 0.035) 45%,
+    rgba(245, 241, 232, 0.08) 55%,
+    transparent 80%
+  );
+  background-size: 250% 250%;
+  animation: blueprintSweepFlow 22s ease-in-out infinite;
+  mix-blend-mode: multiply;
+}
+
+@keyframes blueprintSweepFlow {
+  0% {
+    background-position: 0% 0%;
+    opacity: 0.4;
+  }
+  50% {
+    background-position: 100% 100%;
+    opacity: 0.85;
+  }
+  100% {
+    background-position: 0% 0%;
+    opacity: 0.4;
+  }
+}
+
+/* 4. Desktop Interactive Radial Pointer Spotlight */
+.technical-notebook-bg__spotlight {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle 380px at var(--mouse-x, 50%) var(--mouse-y, 40%),
+    rgba(52, 85, 164, 0.055) 0%,
+    rgba(240, 82, 67, 0.015) 45%,
+    transparent 75%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease-out;
+}
+
+.technical-notebook-bg.has-mouse .technical-notebook-bg__spotlight {
+  opacity: 1;
+}
+
+/* 5. Left Margin Architectural Ruler Guide */
+.technical-notebook-bg__ruler {
+  position: absolute;
+  left: clamp(10px, 2vw, 28px);
+  top: 80px;
+  bottom: 40px;
+  width: 12px;
+  border-right: 1px solid rgba(52, 85, 164, 0.18);
+  opacity: 0.65;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.technical-notebook-bg__ruler-tick {
+  width: 6px;
+  height: 1px;
+  background: rgba(52, 85, 164, 0.35);
+  margin-left: auto;
+}
+
+.technical-notebook-bg__ruler-tick--major {
+  width: 10px;
+  height: 1.5px;
+  background: rgba(52, 85, 164, 0.55);
+}
+
+/* 6. Corner Technical Registration Marks */
+.technical-notebook-bg__crosshair {
+  position: absolute;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: rgba(52, 85, 164, 0.32);
+  line-height: 1;
+  user-select: none;
+}
+
+.technical-notebook-bg__crosshair--tl { top: 76px; left: 36px; }
+.technical-notebook-bg__crosshair--tr { top: 76px; right: 36px; }
+.technical-notebook-bg__crosshair--bl { bottom: 24px; left: 36px; }
+.technical-notebook-bg__crosshair--br { bottom: 24px; right: 36px; }
+
+/* --------------------------------------------------------------------------
+   SECTION-SPECIFIC MARGIN DECORATORS (In-Flow, Margin-Anchored)
+   Positioned in the empty outer margins beside main content
+   -------------------------------------------------------------------------- */
+
+.section-blueprint-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Selected Work / Enterprise Systems Section Blueprint Decorator */
+.work-blueprint-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Architectural Corner Registration Marks for Section 01 */
+.work-reg-mark {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: rgba(52, 85, 164, 0.28);
+  border-style: solid;
+}
+
+.work-reg-mark--tl {
+  top: 36px;
+  left: clamp(16px, 4vw, 48px);
+  border-width: 1.5px 0 0 1.5px;
+}
+
+.work-reg-mark--tr {
+  top: 36px;
+  right: clamp(16px, 4vw, 48px);
+  border-width: 1.5px 1.5px 0 0;
+}
+
+/* Floating Technical Artifacts in Outer Margins */
+.floating-technical-note {
+  position: relative;
+  width: fit-content;
+  max-width: max-content;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--blueprint-ink);
+  background: rgba(252, 250, 244, 0.92);
+  border: 1px dashed rgba(52, 85, 164, 0.32);
+  padding: 4px 9px;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(28, 27, 25, 0.05);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease-out;
+  user-select: none;
+}
+
+.floating-technical-note--red {
+  color: var(--blueprint-red);
+  border-color: rgba(240, 82, 67, 0.38);
+  background: rgba(255, 245, 244, 0.94);
+}
+
+.floating-technical-note--blue {
+  color: var(--blueprint-blue);
+  border-color: rgba(52, 85, 164, 0.42);
+  background: rgba(244, 247, 255, 0.94);
+}
+
+/* Animation Keyframes for Decorative Background Elements */
+.blueprint-node-pulse {
+  animation: blueprintNodeGlow 4.2s ease-in-out infinite;
+}
+
+@keyframes blueprintNodeGlow {
+  0%, 100% {
+    r: 3px;
+    fill-opacity: 0.45;
+  }
+  50% {
+    r: 4.5px;
+    fill-opacity: 0.95;
+    filter: drop-shadow(0 0 3px rgba(52, 85, 164, 0.6));
+  }
+}
+
+.blueprint-line-draw {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: blueprintLineReveal 2.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes blueprintLineReveal {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.blueprint-signal-travel {
+  animation: blueprintSignalMove 6.8s linear infinite;
+}
+
+@keyframes blueprintSignalMove {
+  0% {
+    stroke-dashoffset: 80;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -80;
+    opacity: 0;
+  }
+}
+
+.blueprint-tape-sway {
+  animation: blueprintPaperTilt 9.2s ease-in-out infinite alternate;
+}
+
+@keyframes blueprintPaperTilt {
+  0% {
+    transform: rotate(-1.5deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: rotate(0.8deg) translate3d(0, 3px, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility: Prefers Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .technical-notebook-bg__grid,
+  .technical-notebook-bg__sweep,
+  .blueprint-node-pulse,
+  .blueprint-signal-travel,
+  .blueprint-tape-sway {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .blueprint-line-draw {
+    stroke-dashoffset: 0 !important;
+  }
+}
+
+/* Responsive Viewport Adjustments: Ensure margin decorations never collide with content */
+@media (max-width: 1400px) {
+  .section-blueprint-layer {
+    opacity: 0.65;
+  }
+}
+
+@media (max-width: 1260px) {
+  .section-blueprint-layer {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .floating-technical-note {
+    display: none !important;
+  }
+  .work-reg-mark {
+    display: none !important;
+  }
+  .technical-notebook-bg__ruler {
+    display: none !important;
+  }
+}

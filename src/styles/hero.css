@@ -1,0 +1,1047 @@
+/* ==========================================================================
+   PORTFOLIO HERO — DEDICATED EDITORIAL HERO STYLESHEET
+   Strictly scoped to .portfolio-hero to protect all downstream chapters
+   ========================================================================== */
+
+.portfolio-hero {
+  --hero-bg: #F2EFE7;
+  --hero-ink: #1C1B19;
+  --hero-red: #E34B3C;
+  --hero-yellow: #F0E357;
+  --hero-blue: #334FA1;
+  --hero-muted: #65615A;
+  --hero-faint: #8E8A82;
+
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+#chapter-cover.portfolio-hero {
+  height: auto;
+  min-height: calc(100svh - var(--header-height, 64px));
+}
+
+#chapter-cover.portfolio-hero .scroll-stage {
+  position: relative;
+  top: 0;
+  height: auto;
+  min-height: calc(100svh - var(--header-height, 64px));
+  overflow: visible;
+}
+
+/* --------------------------------------------------------------------------
+   Layer 1: Subtle Organic Paper Background Life
+   -------------------------------------------------------------------------- */
+.portfolio-hero__ambient-paper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.45;
+  background-image: 
+    radial-gradient(circle at 18% 22%, rgba(28, 27, 25, 0.025) 0%, transparent 45%),
+    radial-gradient(circle at 82% 78%, rgba(28, 27, 25, 0.025) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, transparent 100%);
+  mix-blend-mode: multiply;
+  animation: heroPaperSubtleBreathe 14s ease-in-out infinite alternate;
+}
+
+@keyframes heroPaperSubtleBreathe {
+  0% {
+    opacity: 0.38;
+  }
+  100% {
+    opacity: 0.52;
+  }
+}
+
+.portfolio-hero__camera-rig {
+  display: flex;
+  flex-direction: column;
+  justifyContent: space-between;
+  min-height: calc(100svh - var(--header-height, 64px));
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: clamp(1rem, 2.5vw, 2rem) clamp(1.25rem, 3.5vw, 3rem) clamp(0.75rem, 1.8vw, 1.5rem);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   Top Metadata Bar: Eyebrow & Archival Stamp
+   -------------------------------------------------------------------------- */
+.portfolio-hero__top-meta {
+  display: flex;
+  align-items: center;
+  justifyContent: space-between;
+  width: 100%;
+  margin-bottom: clamp(0.5rem, 1.5vh, 1.25rem);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  z-index: 10;
+  animation: heroFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+}
+
+.portfolio-hero__eyebrow {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(0.68rem, 0.9vw, 0.75rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hero-ink);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.portfolio-hero__eyebrow-dot {
+  color: var(--hero-red);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.portfolio-hero__academic-stamp {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(0.62rem, 0.8vw, 0.72rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--hero-blue);
+  border: 1.5px dashed var(--hero-blue);
+  border-radius: 2px;
+  padding: 4px 10px;
+  background-color: rgba(51, 79, 161, 0.03);
+  transform: rotate(-0.75deg);
+  box-shadow: 0 1px 3px rgba(51, 79, 161, 0.08);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Main Two-Column Editorial Spread
+   -------------------------------------------------------------------------- */
+.portfolio-hero__main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.28fr);
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  align-items: center;
+  flex: 1;
+  position: relative;
+  width: 100%;
+  max-width: 1540px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: Display Headline, Lede, CTA Buttons
+   -------------------------------------------------------------------------- */
+.portfolio-hero__left {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 5;
+  max-width: 580px;
+  box-sizing: border-box;
+}
+
+/* Beat 01: Torn Decorative Accents above Headline */
+.portfolio-hero__decor-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 0.85rem;
+  width: fit-content;
+}
+
+.portfolio-hero__decor-blue {
+  animation: heroDecorBlueReveal 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) 0.08s backwards;
+}
+
+@keyframes heroDecorBlueReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.4;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+.portfolio-hero__decor-red-path {
+  stroke-dasharray: 75;
+  stroke-dashoffset: 75;
+  animation: heroStrokeDraw 0.45s ease-out 0.22s forwards;
+}
+
+@keyframes heroStrokeDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Main Editorial Display Heading (Beat 01 fade & settle) */
+.portfolio-hero__headline {
+  font-family: var(--font-display, 'Fraunces', serif);
+  font-size: clamp(2rem, 3.3vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--hero-ink);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  text-wrap: balance;
+  animation: heroHeadlineSettle 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.18s backwards;
+}
+
+@keyframes heroHeadlineSettle {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.portfolio-hero__headline-line {
+  display: block;
+}
+
+.portfolio-hero__headline-life {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35em;
+  margin-top: 0.1em;
+}
+
+/* Beat 02 & Continuous: Organic Yellow Highlighter Shape */
+.portfolio-hero__highlighter-wrap {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.portfolio-hero__highlighter-svg {
+  position: absolute;
+  inset: -6% -8% -6% -8%;
+  width: 116%;
+  height: 112%;
+  pointer-events: none;
+  z-index: -1;
+  mix-blend-mode: multiply;
+  opacity: 0.94;
+  transform: rotate(-0.5deg);
+  /* Beat 02 sweep reveal */
+  animation: 
+    heroHighlighterSweep 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.52s backwards,
+    heroHighlighterPulse 14s ease-in-out 2.5s infinite;
+}
+
+@keyframes heroHighlighterSweep {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes heroHighlighterPulse {
+  0%, 100% {
+    opacity: 0.92;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    opacity: 0.98;
+    filter: drop-shadow(0 1px 2px rgba(240, 227, 87, 0.25));
+  }
+}
+
+.portfolio-hero__highlighter-text {
+  color: var(--hero-ink);
+  position: relative;
+  z-index: 2;
+  padding: 0 4px;
+}
+
+/* Supporting Lede */
+.portfolio-hero__lede {
+  font-family: var(--font-sans, sans-serif);
+  font-size: clamp(0.85rem, 1.05vw, 1rem);
+  line-height: 1.55;
+  color: var(--hero-muted);
+  max-width: 460px;
+  margin-top: clamp(1rem, 2vh, 1.5rem);
+  font-weight: 450;
+  animation: heroFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.32s backwards;
+}
+
+/* Primary CTAs with Microinteractions */
+.portfolio-hero__cta-container {
+  margin-top: clamp(1.2rem, 2.4vh, 1.8rem);
+  width: fit-content;
+}
+
+.portfolio-hero__cta {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: transform 0.2s ease-out;
+  animation: heroCtaSlideIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.82s backwards;
+  will-change: transform, opacity, clip-path;
+}
+
+@keyframes heroCtaSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-24px);
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.portfolio-hero__cta:hover {
+  transform: translateY(-1px);
+}
+
+.portfolio-hero__cta-text {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(0.78rem, 0.95vw, 0.88rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hero-ink);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.portfolio-hero__cta-arrow {
+  display: inline-block;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.portfolio-hero__cta:hover .portfolio-hero__cta-arrow {
+  transform: translate3d(3px, 3px, 0);
+}
+
+.portfolio-hero__cta-underline {
+  width: 100%;
+  height: 8px;
+  margin-top: 2px;
+  overflow: visible;
+  transition: transform 0.25s ease-out;
+  transform-origin: left center;
+}
+
+.portfolio-hero__cta:hover .portfolio-hero__cta-underline {
+  transform: scaleX(1.05);
+}
+
+.portfolio-hero__cta-underline-path {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: heroStrokeDraw 0.65s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
+}
+
+/* "VIEW EXPERIENCE" Button: Left-to-right slide-in reveal with NO pop / NO bounce */
+.portfolio-hero__exp-btn {
+  animation: heroExpBtnSlideIn 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.98s backwards !important;
+  will-change: transform, opacity, clip-path;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes heroExpBtnSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-34px);
+    clip-path: inset(0 100% 0 0);
+  }
+  60% {
+    opacity: 0.9;
+    clip-path: inset(0 15% 0 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.portfolio-hero__exp-btn:hover {
+  background: rgba(51, 79, 161, 0.08) !important;
+  border-color: var(--color-cobalt) !important;
+  transform: translateY(-1px);
+}
+
+.portfolio-hero__exp-arrow {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-hero__exp-btn:hover .portfolio-hero__exp-arrow {
+  transform: translate3d(3px, 0, 0);
+}
+
+.portfolio-hero__footnote {
+  animation: heroFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.58s backwards;
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: Monochrome AI Scrapbook Collage
+   Beat 03 Desk Landing -> Beat 05 Continuous Smooth Sway (Left -> Right -> Left)
+   -------------------------------------------------------------------------- */
+.portfolio-hero__right {
+  display: flex;
+  align-items: center;
+  justifyContent: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Beat 04: Standalone Red Hand-drawn Callout Arrow — Anchored snug to picture */
+.portfolio-hero__floating-annotation {
+  position: absolute;
+  top: -16px;
+  left: 12%;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  z-index: 15;
+  pointer-events: none;
+  animation: heroFadeIn 0.6s ease-out 1.25s backwards;
+}
+
+.portfolio-hero__annotation-path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: heroStrokeDraw 0.55s ease-out 1.35s forwards;
+}
+
+.portfolio-hero__annotation-head {
+  stroke-dasharray: 25;
+  stroke-dashoffset: 25;
+  animation: heroStrokeDraw 0.3s ease-out 1.75s forwards;
+}
+
+.portfolio-hero__annotation-text {
+  font-family: var(--font-hand, 'Caveat', cursive);
+  font-size: 1.18rem;
+  color: var(--hero-red);
+  transform: rotate(-3deg);
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0.92;
+}
+
+.portfolio-hero__collage-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  align-items: center;
+  justifyContent: center;
+  user-select: none;
+  transition: filter 0.35s ease-out;
+}
+
+.portfolio-hero__collage-wrap:hover {
+  filter: drop-shadow(0 26px 54px rgba(28, 27, 25, 0.24));
+}
+
+.portfolio-hero__scrapbook-sway {
+  position: relative;
+  width: 100%;
+  height: auto;
+  transform-origin: center center;
+  will-change: transform, filter;
+}
+
+/* Beat 03: Tactile Physical Sheet Landing onto Desk (1.8s) */
+@keyframes heroCollageLanding {
+  0% {
+    opacity: 0.15;
+    transform: translate3d(-14px, -18px, 0) rotate(-1.2deg) scale(0.96);
+    filter: drop-shadow(0 8px 18px rgba(28, 27, 25, 0.10));
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(2px, 3px, 0) rotate(0.2deg) scale(1.006);
+    filter: drop-shadow(-3px 20px 38px rgba(28, 27, 25, 0.20));
+  }
+  85% {
+    transform: translate3d(-9px, -3px, 0) rotate(-0.28deg) scale(0.998);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(-8px, -2px, 0) rotate(-0.25deg) scale(1);
+    filter: drop-shadow(-5px 22px 42px rgba(28, 27, 25, 0.19));
+  }
+}
+
+.portfolio-hero__scrapbook-sway.is-landing {
+  animation: heroCollageLanding 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Beat 05 & Continuous: Tactile Signature Scrapbook Sway (LEFT -> RIGHT -> LEFT)
+   Matches the 100% frame of heroCollageLanding for seamless, zero-jump loop */
+@keyframes heroScrapbookContinuousSway {
+  0% {
+    transform: translate3d(-8px, -2px, 0) rotate(-0.25deg);
+    filter: drop-shadow(-6px 22px 42px rgba(28, 27, 25, 0.20));
+  }
+  50% {
+    transform: translate3d(0px, 2px, 0) rotate(0.05deg);
+    filter: drop-shadow(0px 18px 36px rgba(28, 27, 25, 0.16));
+  }
+  100% {
+    transform: translate3d(8px, -1.5px, 0) rotate(0.25deg);
+    filter: drop-shadow(6px 20px 44px rgba(28, 27, 25, 0.20));
+  }
+}
+
+.portfolio-hero__scrapbook-sway.is-swaying {
+  animation: heroScrapbookContinuousSway 10.5s ease-in-out infinite alternate;
+}
+
+/* --------------------------------------------------------------------------
+   Bottom Meta Bar: Scroll Cue & Index Indicator
+   -------------------------------------------------------------------------- */
+.portfolio-hero__bottom-meta {
+  display: flex;
+  align-items: center;
+  justifyContent: space-between;
+  width: 100%;
+  border-top: 1px solid rgba(28, 27, 25, 0.12);
+  padding-top: clamp(0.6rem, 1.2vh, 0.9rem);
+  margin-top: clamp(0.5rem, 1.5vh, 1.25rem);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  z-index: 10;
+  animation: heroFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.6s backwards;
+}
+
+.portfolio-hero__scroll-cue {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(0.68rem, 0.82vw, 0.75rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hero-muted);
+}
+
+.portfolio-hero__scroll-cue-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--hero-red);
+  display: inline-block;
+  animation: heroDotPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes heroDotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 1;
+  }
+}
+
+.portfolio-hero__index-cue {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(0.65rem, 0.8vw, 0.72rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hero-faint);
+}
+
+/* Universal Soft Fade In */
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Design Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .portfolio-hero__main-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 2rem;
+  }
+
+  .portfolio-hero__headline {
+    font-size: clamp(2.4rem, 5.2vw, 4.2rem);
+  }
+
+  .portfolio-hero__collage-wrap {
+    max-width: 680px;
+  }
+
+  .portfolio-hero__floating-annotation {
+    top: -14px;
+    left: 8%;
+  }
+
+  .portfolio-hero__annotation-text {
+    font-size: 1.05rem;
+  }
+
+  @keyframes heroScrapbookContinuousSway {
+    0% {
+      transform: translate3d(-5px, -1px, 0) rotate(-0.15deg);
+      filter: drop-shadow(-4px 18px 32px rgba(28, 27, 25, 0.18));
+    }
+    100% {
+      transform: translate3d(5px, -1px, 0) rotate(0.15deg);
+      filter: drop-shadow(4px 18px 34px rgba(28, 27, 25, 0.18));
+    }
+  }
+
+  .portfolio-hero__scrapbook-sway.is-swaying {
+    animation: heroScrapbookContinuousSway 9.5s ease-in-out infinite alternate;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-hero__main-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 0.25rem;
+  }
+
+  .portfolio-hero__camera-rig {
+    min-height: auto;
+    padding: 1rem 1rem 1.5rem;
+  }
+
+  .portfolio-hero__headline {
+    font-size: clamp(2.2rem, 9.5vw, 3.4rem);
+  }
+
+  .portfolio-hero__academic-stamp {
+    font-size: 0.6rem;
+    white-space: normal;
+    text-align: right;
+  }
+
+  .portfolio-hero__right {
+    order: 2;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  .portfolio-hero__collage-wrap {
+    max-width: 100%;
+  }
+
+  .portfolio-hero__floating-annotation {
+    top: -12px;
+    left: 4%;
+  }
+
+  .portfolio-hero__annotation-text {
+    font-size: 0.95rem;
+  }
+
+  /* Subtler sway on mobile, zero rotation to prevent horizontal overflow */
+  @keyframes heroScrapbookMobileSway {
+    0% {
+      transform: translate3d(-3.5px, 0, 0);
+      filter: drop-shadow(-2px 14px 26px rgba(28, 27, 25, 0.16));
+    }
+    100% {
+      transform: translate3d(3.5px, 0, 0);
+      filter: drop-shadow(2px 14px 26px rgba(28, 27, 25, 0.16));
+    }
+  }
+
+  .portfolio-hero__scrapbook-sway.is-swaying {
+    animation: heroScrapbookMobileSway 8s ease-in-out infinite alternate;
+  }
+
+  .portfolio-hero__bottom-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CINEMATIC HANDMADE SCRAPBOOK MOTION GRAPHICS
+   Sequenced 9.6s loop: Neural Net -> Chip/Servers -> Quotation AI -> RAG -> MLOps
+   -------------------------------------------------------------------------- */
+
+.scrapbook-motion-overlay {
+  mix-blend-mode: multiply;
+  transition: opacity 0.5s ease-out;
+}
+
+/* 1. Neural Network Illumination & Line Draws */
+.anim-neural-line {
+  animation: heroLineDraw 3.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.anim-node {
+  fill: #1C1B19;
+  animation: heroNodeIlluminate 3.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.anim-delay-1 { animation-delay: 0.2s; }
+.anim-delay-2 { animation-delay: 0.45s; }
+.anim-delay-3 { animation-delay: 0.7s; }
+.anim-delay-4 { animation-delay: 0.95s; }
+.anim-delay-5 { animation-delay: 1.2s; }
+.anim-delay-6 { animation-delay: 1.45s; }
+.anim-delay-7 { animation-delay: 1.7s; }
+.anim-delay-8 { animation-delay: 1.95s; }
+.anim-delay-9 { animation-delay: 2.2s; }
+.anim-delay-10 { animation-delay: 2.45s; }
+
+@keyframes heroLineDraw {
+  0%, 15% {
+    stroke-dashoffset: 150;
+    opacity: 0.2;
+  }
+  45%, 85% {
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.35;
+  }
+}
+
+@keyframes heroNodeIlluminate {
+  0%, 10% {
+    fill: #1C1B19;
+    opacity: 0.3;
+    r: 3.5px;
+  }
+  30%, 75% {
+    fill: #334FA1;
+    opacity: 1;
+    r: 4.8px;
+    filter: drop-shadow(0 0 3px rgba(51, 79, 161, 0.7));
+  }
+  95%, 100% {
+    fill: #1C1B19;
+    opacity: 0.5;
+    r: 3.5px;
+  }
+}
+
+/* 2. AI Chip Breathing Pulse */
+.anim-chip-pulse {
+  animation: heroChipPulse 2.4s ease-in-out infinite;
+  transform-origin: 207px 445px;
+}
+
+@keyframes heroChipPulse {
+  0%, 100% {
+    stroke-opacity: 0.25;
+    stroke-width: 1.4px;
+    transform: scale(0.98);
+  }
+  50% {
+    stroke-opacity: 0.85;
+    stroke-width: 2.2px;
+    transform: scale(1.02);
+  }
+}
+
+.anim-chip-glow {
+  animation: heroChipGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes heroChipGlow {
+  0%, 100% {
+    opacity: 0.08;
+    r: 16px;
+  }
+  50% {
+    opacity: 0.24;
+    r: 22px;
+  }
+}
+
+/* 3. Server Blinking LEDs */
+.anim-server-led {
+  animation: heroServerBlink 1.4s steps(2, start) infinite;
+}
+
+.anim-led-green {
+  fill: #10b981;
+}
+
+.anim-led-amber {
+  fill: #f59e0b;
+}
+
+@keyframes heroServerBlink {
+  0%, 40% { opacity: 0.25; }
+  41%, 85% { opacity: 0.95; filter: drop-shadow(0 0 2px currentColor); }
+  86%, 100% { opacity: 0.25; }
+}
+
+/* 4. Laptop Terminal Cursor & Glow */
+.anim-terminal-cursor {
+  animation: heroCursorBlink 0.9s steps(2, start) infinite;
+}
+
+@keyframes heroCursorBlink {
+  0%, 48% { opacity: 0.9; }
+  52%, 100% { opacity: 0.05; }
+}
+
+.anim-terminal-glow {
+  animation: heroTerminalGlow 3.6s ease-in-out infinite;
+}
+
+@keyframes heroTerminalGlow {
+  0%, 100% { opacity: 0.03; }
+  50% { opacity: 0.09; }
+}
+
+/* 5. Quotation AI Workflow (Beat 4) */
+.anim-quotation-sweep {
+  animation: heroQuotationSweep 9.6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes heroQuotationSweep {
+  0%, 25% {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  32% {
+    opacity: 0.75;
+  }
+  48% {
+    transform: translateX(330px);
+    opacity: 0.65;
+  }
+  55%, 100% {
+    transform: translateX(350px);
+    opacity: 0;
+  }
+}
+
+.anim-wf-arrow {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: heroArrowDraw 9.6s ease-out infinite;
+}
+
+.anim-delay-q1 { animation-delay: 2.8s; }
+.anim-delay-q2 { animation-delay: 3.4s; }
+.anim-delay-q3 { animation-delay: 4.0s; }
+
+@keyframes heroArrowDraw {
+  0%, 26% {
+    stroke-dashoffset: 20;
+    opacity: 0.2;
+  }
+  35%, 80% {
+    stroke-dashoffset: 0;
+    opacity: 0.9;
+  }
+  95%, 100% {
+    stroke-dashoffset: 0;
+    opacity: 0.3;
+  }
+}
+
+.anim-checkmark {
+  animation: heroCheckmarkDraw 9.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.anim-delay-q4 { animation-delay: 4.5s; }
+.anim-delay-r4 { animation-delay: 6.8s; }
+
+@keyframes heroCheckmarkDraw {
+  0%, 40% {
+    stroke-dashoffset: 30;
+    opacity: 0;
+  }
+  48%, 85% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    filter: drop-shadow(0 0 3px rgba(51, 79, 161, 0.6));
+  }
+  98%, 100% {
+    stroke-dashoffset: 0;
+    opacity: 0.4;
+  }
+}
+
+/* 6. Knowledge RAG Workflow (Beat 5) */
+.anim-rag-scan {
+  animation: heroRagScan 9.6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes heroRagScan {
+  0%, 46% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  52% {
+    opacity: 0.7;
+  }
+  70% {
+    transform: translateX(340px);
+    opacity: 0.6;
+  }
+  76%, 100% {
+    transform: translateX(360px);
+    opacity: 0;
+  }
+}
+
+.anim-embedding {
+  animation: heroEmbeddingDrift 9.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  opacity: 0;
+}
+
+.anim-emb-1 { animation-delay: 4.9s; }
+.anim-emb-2 { animation-delay: 5.2s; }
+.anim-emb-3 { animation-delay: 5.5s; }
+
+@keyframes heroEmbeddingDrift {
+  0%, 48% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  54% {
+    opacity: 0.85;
+  }
+  68% {
+    transform: translate(75px, -4px);
+    opacity: 0.75;
+  }
+  75%, 100% {
+    transform: translate(82px, -4px);
+    opacity: 0;
+  }
+}
+
+/* 7. MLOps Workflow (Beat 6) */
+.anim-monitor-wave {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: heroMonitorWave 4.8s linear infinite;
+}
+
+@keyframes heroMonitorWave {
+  0% {
+    stroke-dashoffset: 50;
+    opacity: 0.3;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 2px rgba(240, 227, 87, 0.8));
+  }
+  100% {
+    stroke-dashoffset: -50;
+    opacity: 0.3;
+  }
+}
+
+.anim-retrain-ring {
+  animation: heroRetrainRotate 6.4s linear infinite;
+  transform-origin: 846px 568px;
+}
+
+@keyframes heroRetrainRotate {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.45;
+  }
+}
+
+.anim-red-sketch {
+  animation: heroRedSketch 9.6s ease-out infinite;
+}
+
+@keyframes heroRedSketch {
+  0%, 15% {
+    stroke-dashoffset: 60;
+    opacity: 0;
+  }
+  25%, 85% {
+    stroke-dashoffset: 0;
+    opacity: 0.95;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.6;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility: Prefers Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-hero * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .portfolio-hero__scrapbook-sway,
+  .portfolio-hero__scrapbook-sway.is-landing,
+  .portfolio-hero__scrapbook-sway.is-swaying {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .portfolio-hero__highlighter-svg {
+    clip-path: none !important;
+    opacity: 0.94 !important;
+  }
+
+  .portfolio-hero__decor-red-path,
+  .portfolio-hero__cta-underline-path,
+  .portfolio-hero__annotation-path,
+  .portfolio-hero__annotation-head {
+    stroke-dashoffset: 0 !important;
+  }
+}
