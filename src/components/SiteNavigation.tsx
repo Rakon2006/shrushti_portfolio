@@ -26,6 +26,18 @@ export const SiteNavigation: React.FC = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    // Prevent browser from restoring scrolled-down position on reload
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // Always ensure fresh page reload lands at the top of the main home page
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+    setActiveSection('chapter-cover');
+
     const sectionIds = ['chapter-cover', ...NAV_POINTS.map((p) => p.id)];
     const handleScroll = () => {
       const scrollPos = window.scrollY + 140; // Offset for sticky header
@@ -45,18 +57,6 @@ export const SiteNavigation: React.FC = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    // Support direct hash navigation on initial landing
-    if (window.location.hash) {
-      const initialId = window.location.hash.replace('#', '');
-      const targetEl = document.getElementById(initialId);
-      if (targetEl) {
-        setTimeout(() => {
-          targetEl.scrollIntoView({ behavior: 'smooth' });
-          setActiveSection(initialId);
-        }, 300);
-      }
-    }
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -68,7 +68,6 @@ export const SiteNavigation: React.FC = () => {
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState(null, '', `#${id}`);
       }
     } else {
       window.location.href = `/#${id}`;

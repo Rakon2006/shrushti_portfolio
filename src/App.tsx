@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useScrollEngine } from './hooks/useScrollEngine';
 import { CrossRevealLoader } from './components/CrossRevealLoader';
 import { TechnicalNotebookBackground } from './components/background/TechnicalNotebookBackground';
@@ -16,6 +16,15 @@ import { EndCard } from './components/EndCard';
 export function App() {
   // Activate centralized scroll engine (single rAF loop, smooth follow, camera keyframes)
   useScrollEngine();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    }
+  }, []);
 
   return (
     <div className="portfolio-editorial-app">
