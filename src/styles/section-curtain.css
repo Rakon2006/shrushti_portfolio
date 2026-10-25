@@ -1,173 +1,27 @@
 /* ==========================================================================
-   CINEMATIC STAGE-CURTAIN REVEAL SYSTEM
-   Theatrical curtain lift revealing underlying section content
-   Strictly scoped to .section-curtain
+   MODERN SLEEK SECTION WRAPPER
+   Instant, unobstructed section transitions with zero curtain delays
    ========================================================================== */
 
+.section-sleek-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+/* Clean fallback if legacy class is referenced */
 .section-curtain {
   position: relative;
   width: 100%;
-  overflow: hidden; /* Natural clipping within reveal container */
-  transition: overflow 0.2s ease-out;
-  min-height: clamp(260px, 34vh, 360px);
+  overflow: visible;
+  min-height: auto;
 }
 
-.section-curtain.is-revealed {
-  overflow: visible; /* Release clipping once curtain has exited */
-}
-
-/* --------------------------------------------------------------------------
-   The Moving Curtain Panel
-   -------------------------------------------------------------------------- */
 .section-curtain__panel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  min-height: clamp(260px, 34vh, 360px);
-  z-index: 25;
-  display: flex;
-  flex-direction: column;
-  justifyContent: space-between;
-  padding: clamp(1.75rem, 4vw, 3rem);
-  box-shadow: 0 16px 36px rgba(28, 27, 25, 0.22);
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.88s cubic-bezier(0.65, 0, 0.35, 1);
-  transform-origin: top center;
-  box-sizing: border-box;
+  display: none !important;
 }
 
-.section-curtain__panel.is-lifting {
-  transform: translate3d(0, -105%, 0);
-}
-
-.section-curtain__panel.is-revealed {
-  transform: translate3d(0, -105%, 0);
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* --------------------------------------------------------------------------
-   Torn Lower Edge & Moving Soft Shadow
-   -------------------------------------------------------------------------- */
-.section-curtain__torn-edge {
-  position: absolute;
-  bottom: -18px;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-  z-index: 4;
-}
-
-.section-curtain__shadow {
-  position: absolute;
-  bottom: -28px;
-  left: 0;
-  width: 100%;
-  height: 28px;
-  background: radial-gradient(ellipse at center bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.18) 55%, transparent 80%);
-  pointer-events: none;
-  z-index: 3;
-  opacity: 0.9;
-  transition: opacity 0.3s ease-out;
-}
-
-.section-curtain__panel.is-revealed .section-curtain__shadow {
-  opacity: 0;
-}
-
-/* --------------------------------------------------------------------------
-   Curtain Inner Typography & Visual Elements
-   -------------------------------------------------------------------------- */
-.section-curtain__top-meta {
-  display: flex;
-  justifyContent: space-between;
-  align-items: center;
-}
-
-.section-curtain__subtitle {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.8rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  opacity: 0.9;
-  font-weight: 600;
-}
-
-.section-curtain__field-notes {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  opacity: 0.8;
-}
-
-.section-curtain__typography {
-  max-width: 1080px;
-  margin: auto 0;
-  position: relative;
-}
-
-.section-curtain__large-num {
-  font-family: var(--font-display, 'Fraunces', serif);
-  font-size: clamp(4.5rem, 12vw, 8.5rem);
-  font-weight: 900;
-  line-height: 0.85;
-  letter-spacing: -0.06em;
-  display: block;
-  opacity: 0.2;
-  margin-bottom: -0.15em;
-  user-select: none;
-}
-
-.section-curtain__title {
-  font-family: var(--font-display, 'Fraunces', serif);
-  font-size: clamp(2.2rem, 4.6vw, 4.2rem);
-  font-weight: 900;
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-  text-wrap: balance;
-  margin: 0;
-}
-
-.section-curtain__bottom-meta {
-  display: flex;
-  justifyContent: space-between;
-  align-items: flex-end;
-  z-index: 3;
-}
-
-.section-curtain__hand-script {
-  font-family: var(--font-hand, cursive);
-  font-size: 1.35rem;
-  opacity: 0.95;
-  color: var(--color-highlighter, #F0E357);
-}
-
-.section-curtain__divider {
-  width: 48px;
-  height: 2px;
-  background-color: currentColor;
-  opacity: 0.4;
-}
-
-/* --------------------------------------------------------------------------
-   The Underlying Content Layer
-   -------------------------------------------------------------------------- */
 .section-curtain__content {
   position: relative;
-  z-index: 10;
   width: 100%;
-}
-
-/* --------------------------------------------------------------------------
-   Accessibility & Reduced Motion Overrides
-   -------------------------------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-  .section-curtain__panel {
-    display: none !important;
-  }
-  .section-curtain {
-    overflow: visible !important;
-  }
 }

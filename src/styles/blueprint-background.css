@@ -4,11 +4,11 @@
    ========================================================================== */
 
 :root {
-  --blueprint-base: #F5F1E8;
-  --blueprint-grid: #D8D2C7;
-  --blueprint-blue: #3455A4;
-  --blueprint-red: #F05243;
-  --blueprint-ink: #222222;
+  --blueprint-base: #F6F8FA;
+  --blueprint-grid: rgba(15, 23, 42, 0.05);
+  --blueprint-blue: #0284C7;
+  --blueprint-red: #E11D48;
+  --blueprint-ink: #0F172A;
 }
 
 /* 1. Global Full-Page Background Host */
@@ -31,11 +31,11 @@
   height: calc(100% + 80px);
   background-image:
     /* Minor grid: 24px squares */
-    linear-gradient(to right, rgba(216, 210, 199, 0.38) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(216, 210, 199, 0.38) 1px, transparent 1px),
+    linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
     /* Major grid: 120px squares (every 5 minor cells) */
-    linear-gradient(to right, rgba(195, 187, 172, 0.68) 1.2px, transparent 1.2px),
-    linear-gradient(to bottom, rgba(195, 187, 172, 0.68) 1.2px, transparent 1.2px);
+    linear-gradient(to right, rgba(15, 23, 42, 0.065) 1.2px, transparent 1.2px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.065) 1.2px, transparent 1.2px);
   background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
   background-position: 0 0, 0 0, 0 0, 0 0;
   animation: blueprintGridDrift 90s ease-in-out infinite alternate;

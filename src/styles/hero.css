@@ -4,13 +4,13 @@
    ========================================================================== */
 
 .portfolio-hero {
-  --hero-bg: #F2EFE7;
-  --hero-ink: #1C1B19;
-  --hero-red: #E34B3C;
-  --hero-yellow: #F0E357;
-  --hero-blue: #334FA1;
-  --hero-muted: #65615A;
-  --hero-faint: #8E8A82;
+  --hero-bg: #F6F8FA;
+  --hero-ink: #0F172A;
+  --hero-red: #E11D48;
+  --hero-yellow: #38BDF8;
+  --hero-blue: #0284C7;
+  --hero-muted: #475569;
+  --hero-faint: #94A3B8;
 
   background-color: transparent;
   position: relative;
@@ -41,7 +41,7 @@
   pointer-events: none;
   z-index: 1;
   opacity: 0.45;
-  background-image: 
+  background-image:
     radial-gradient(circle at 18% 22%, rgba(28, 27, 25, 0.025) 0%, transparent 45%),
     radial-gradient(circle at 82% 78%, rgba(28, 27, 25, 0.025) 0%, transparent 50%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, transparent 100%);
@@ -53,6 +53,7 @@
   0% {
     opacity: 0.38;
   }
+
   100% {
     opacity: 0.52;
   }
@@ -165,6 +166,7 @@
     clip-path: inset(0 100% 0 0);
     opacity: 0.4;
   }
+
   to {
     clip-path: inset(0 0 0 0);
     opacity: 1;
@@ -204,6 +206,7 @@
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -239,7 +242,7 @@
   opacity: 0.94;
   transform: rotate(-0.5deg);
   /* Beat 02 sweep reveal */
-  animation: 
+  animation:
     heroHighlighterSweep 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.52s backwards,
     heroHighlighterPulse 14s ease-in-out 2.5s infinite;
 }
@@ -248,16 +251,20 @@
   from {
     clip-path: inset(0 100% 0 0);
   }
+
   to {
     clip-path: inset(0 0 0 0);
   }
 }
 
 @keyframes heroHighlighterPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.92;
     filter: drop-shadow(0 0 0 transparent);
   }
+
   50% {
     opacity: 0.98;
     filter: drop-shadow(0 1px 2px rgba(240, 227, 87, 0.25));
@@ -309,6 +316,7 @@
     transform: translateX(-24px);
     clip-path: inset(0 100% 0 0);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -373,10 +381,12 @@
     transform: translateX(-34px);
     clip-path: inset(0 100% 0 0);
   }
+
   60% {
     opacity: 0.9;
     clip-path: inset(0 15% 0 0);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -481,14 +491,17 @@
     transform: translate3d(-14px, -18px, 0) rotate(-1.2deg) scale(0.96);
     filter: drop-shadow(0 8px 18px rgba(28, 27, 25, 0.10));
   }
+
   60% {
     opacity: 1;
     transform: translate3d(2px, 3px, 0) rotate(0.2deg) scale(1.006);
     filter: drop-shadow(-3px 20px 38px rgba(28, 27, 25, 0.20));
   }
+
   85% {
     transform: translate3d(-9px, -3px, 0) rotate(-0.28deg) scale(0.998);
   }
+
   100% {
     opacity: 1;
     transform: translate3d(-8px, -2px, 0) rotate(-0.25deg) scale(1);
@@ -507,10 +520,12 @@
     transform: translate3d(-8px, -2px, 0) rotate(-0.25deg);
     filter: drop-shadow(-6px 22px 42px rgba(28, 27, 25, 0.20));
   }
+
   50% {
     transform: translate3d(0px, 2px, 0) rotate(0.05deg);
     filter: drop-shadow(0px 18px 36px rgba(28, 27, 25, 0.16));
   }
+
   100% {
     transform: translate3d(8px, -1.5px, 0) rotate(0.25deg);
     filter: drop-shadow(6px 20px 44px rgba(28, 27, 25, 0.20));
@@ -560,10 +575,13 @@
 }
 
 @keyframes heroDotPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.85;
   }
+
   50% {
     transform: scale(1.35);
     opacity: 1;
@@ -584,6 +602,7 @@
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -621,6 +640,7 @@
       transform: translate3d(-5px, -1px, 0) rotate(-0.15deg);
       filter: drop-shadow(-4px 18px 32px rgba(28, 27, 25, 0.18));
     }
+
     100% {
       transform: translate3d(5px, -1px, 0) rotate(0.15deg);
       filter: drop-shadow(4px 18px 34px rgba(28, 27, 25, 0.18));
@@ -679,6 +699,7 @@
       transform: translate3d(-3.5px, 0, 0);
       filter: drop-shadow(-2px 14px 26px rgba(28, 27, 25, 0.16));
     }
+
     100% {
       transform: translate3d(3.5px, 0, 0);
       filter: drop-shadow(2px 14px 26px rgba(28, 27, 25, 0.16));
@@ -717,26 +738,60 @@
   transform-origin: center;
 }
 
-.anim-delay-1 { animation-delay: 0.2s; }
-.anim-delay-2 { animation-delay: 0.45s; }
-.anim-delay-3 { animation-delay: 0.7s; }
-.anim-delay-4 { animation-delay: 0.95s; }
-.anim-delay-5 { animation-delay: 1.2s; }
-.anim-delay-6 { animation-delay: 1.45s; }
-.anim-delay-7 { animation-delay: 1.7s; }
-.anim-delay-8 { animation-delay: 1.95s; }
-.anim-delay-9 { animation-delay: 2.2s; }
-.anim-delay-10 { animation-delay: 2.45s; }
+.anim-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.anim-delay-2 {
+  animation-delay: 0.45s;
+}
+
+.anim-delay-3 {
+  animation-delay: 0.7s;
+}
+
+.anim-delay-4 {
+  animation-delay: 0.95s;
+}
+
+.anim-delay-5 {
+  animation-delay: 1.2s;
+}
+
+.anim-delay-6 {
+  animation-delay: 1.45s;
+}
+
+.anim-delay-7 {
+  animation-delay: 1.7s;
+}
+
+.anim-delay-8 {
+  animation-delay: 1.95s;
+}
+
+.anim-delay-9 {
+  animation-delay: 2.2s;
+}
+
+.anim-delay-10 {
+  animation-delay: 2.45s;
+}
 
 @keyframes heroLineDraw {
-  0%, 15% {
+
+  0%,
+  15% {
     stroke-dashoffset: 150;
     opacity: 0.2;
   }
-  45%, 85% {
+
+  45%,
+  85% {
     stroke-dashoffset: 0;
     opacity: 0.85;
   }
+
   100% {
     stroke-dashoffset: 0;
     opacity: 0.35;
@@ -744,18 +799,24 @@
 }
 
 @keyframes heroNodeIlluminate {
-  0%, 10% {
+
+  0%,
+  10% {
     fill: #1C1B19;
     opacity: 0.3;
     r: 3.5px;
   }
-  30%, 75% {
+
+  30%,
+  75% {
     fill: #334FA1;
     opacity: 1;
     r: 4.8px;
     filter: drop-shadow(0 0 3px rgba(51, 79, 161, 0.7));
   }
-  95%, 100% {
+
+  95%,
+  100% {
     fill: #1C1B19;
     opacity: 0.5;
     r: 3.5px;
@@ -769,11 +830,14 @@
 }
 
 @keyframes heroChipPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     stroke-opacity: 0.25;
     stroke-width: 1.4px;
     transform: scale(0.98);
   }
+
   50% {
     stroke-opacity: 0.85;
     stroke-width: 2.2px;
@@ -786,10 +850,13 @@
 }
 
 @keyframes heroChipGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.08;
     r: 16px;
   }
+
   50% {
     opacity: 0.24;
     r: 22px;
@@ -810,9 +877,22 @@
 }
 
 @keyframes heroServerBlink {
-  0%, 40% { opacity: 0.25; }
-  41%, 85% { opacity: 0.95; filter: drop-shadow(0 0 2px currentColor); }
-  86%, 100% { opacity: 0.25; }
+
+  0%,
+  40% {
+    opacity: 0.25;
+  }
+
+  41%,
+  85% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 2px currentColor);
+  }
+
+  86%,
+  100% {
+    opacity: 0.25;
+  }
 }
 
 /* 4. Laptop Terminal Cursor & Glow */
@@ -821,8 +901,16 @@
 }
 
 @keyframes heroCursorBlink {
-  0%, 48% { opacity: 0.9; }
-  52%, 100% { opacity: 0.05; }
+
+  0%,
+  48% {
+    opacity: 0.9;
+  }
+
+  52%,
+  100% {
+    opacity: 0.05;
+  }
 }
 
 .anim-terminal-glow {
@@ -830,8 +918,15 @@
 }
 
 @keyframes heroTerminalGlow {
-  0%, 100% { opacity: 0.03; }
-  50% { opacity: 0.09; }
+
+  0%,
+  100% {
+    opacity: 0.03;
+  }
+
+  50% {
+    opacity: 0.09;
+  }
 }
 
 /* 5. Quotation AI Workflow (Beat 4) */
@@ -840,18 +935,24 @@
 }
 
 @keyframes heroQuotationSweep {
-  0%, 25% {
+
+  0%,
+  25% {
     transform: translateX(-40px);
     opacity: 0;
   }
+
   32% {
     opacity: 0.75;
   }
+
   48% {
     transform: translateX(330px);
     opacity: 0.65;
   }
-  55%, 100% {
+
+  55%,
+  100% {
     transform: translateX(350px);
     opacity: 0;
   }
@@ -863,20 +964,34 @@
   animation: heroArrowDraw 9.6s ease-out infinite;
 }
 
-.anim-delay-q1 { animation-delay: 2.8s; }
-.anim-delay-q2 { animation-delay: 3.4s; }
-.anim-delay-q3 { animation-delay: 4.0s; }
+.anim-delay-q1 {
+  animation-delay: 2.8s;
+}
+
+.anim-delay-q2 {
+  animation-delay: 3.4s;
+}
+
+.anim-delay-q3 {
+  animation-delay: 4.0s;
+}
 
 @keyframes heroArrowDraw {
-  0%, 26% {
+
+  0%,
+  26% {
     stroke-dashoffset: 20;
     opacity: 0.2;
   }
-  35%, 80% {
+
+  35%,
+  80% {
     stroke-dashoffset: 0;
     opacity: 0.9;
   }
-  95%, 100% {
+
+  95%,
+  100% {
     stroke-dashoffset: 0;
     opacity: 0.3;
   }
@@ -886,20 +1001,31 @@
   animation: heroCheckmarkDraw 9.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
-.anim-delay-q4 { animation-delay: 4.5s; }
-.anim-delay-r4 { animation-delay: 6.8s; }
+.anim-delay-q4 {
+  animation-delay: 4.5s;
+}
+
+.anim-delay-r4 {
+  animation-delay: 6.8s;
+}
 
 @keyframes heroCheckmarkDraw {
-  0%, 40% {
+
+  0%,
+  40% {
     stroke-dashoffset: 30;
     opacity: 0;
   }
-  48%, 85% {
+
+  48%,
+  85% {
     stroke-dashoffset: 0;
     opacity: 1;
     filter: drop-shadow(0 0 3px rgba(51, 79, 161, 0.6));
   }
-  98%, 100% {
+
+  98%,
+  100% {
     stroke-dashoffset: 0;
     opacity: 0.4;
   }
@@ -911,18 +1037,24 @@
 }
 
 @keyframes heroRagScan {
-  0%, 46% {
+
+  0%,
+  46% {
     transform: translateX(-20px);
     opacity: 0;
   }
+
   52% {
     opacity: 0.7;
   }
+
   70% {
     transform: translateX(340px);
     opacity: 0.6;
   }
-  76%, 100% {
+
+  76%,
+  100% {
     transform: translateX(360px);
     opacity: 0;
   }
@@ -933,23 +1065,37 @@
   opacity: 0;
 }
 
-.anim-emb-1 { animation-delay: 4.9s; }
-.anim-emb-2 { animation-delay: 5.2s; }
-.anim-emb-3 { animation-delay: 5.5s; }
+.anim-emb-1 {
+  animation-delay: 4.9s;
+}
+
+.anim-emb-2 {
+  animation-delay: 5.2s;
+}
+
+.anim-emb-3 {
+  animation-delay: 5.5s;
+}
 
 @keyframes heroEmbeddingDrift {
-  0%, 48% {
+
+  0%,
+  48% {
     transform: translate(0, 0);
     opacity: 0;
   }
+
   54% {
     opacity: 0.85;
   }
+
   68% {
     transform: translate(75px, -4px);
     opacity: 0.75;
   }
-  75%, 100% {
+
+  75%,
+  100% {
     transform: translate(82px, -4px);
     opacity: 0;
   }
@@ -967,11 +1113,13 @@
     stroke-dashoffset: 50;
     opacity: 0.3;
   }
+
   50% {
     stroke-dashoffset: 0;
     opacity: 0.9;
     filter: drop-shadow(0 0 2px rgba(240, 227, 87, 0.8));
   }
+
   100% {
     stroke-dashoffset: -50;
     opacity: 0.3;
@@ -988,9 +1136,11 @@
     transform: rotate(0deg);
     opacity: 0.45;
   }
+
   50% {
     opacity: 0.9;
   }
+
   100% {
     transform: rotate(360deg);
     opacity: 0.45;
@@ -1002,14 +1152,19 @@
 }
 
 @keyframes heroRedSketch {
-  0%, 15% {
+
+  0%,
+  15% {
     stroke-dashoffset: 60;
     opacity: 0;
   }
-  25%, 85% {
+
+  25%,
+  85% {
     stroke-dashoffset: 0;
     opacity: 0.95;
   }
+
   100% {
     stroke-dashoffset: 0;
     opacity: 0.6;

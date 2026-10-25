@@ -13,17 +13,16 @@ import {
   Activity,
   GitBranch,
   ExternalLink,
-  ChevronRight,
-  Lock
+  ChevronRight
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { MaskingTape } from './analog/MaskingTape';
 
 interface HorizontalCaseStudiesProps {
-  disclosureMode: boolean;
+  disclosureMode?: boolean;
 }
 
-export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ disclosureMode }) => {
+export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState<number>(0);
@@ -186,12 +185,8 @@ export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ di
                       fontWeight: 600
                     }}
                   >
-                    {quoteStudy.employer} · {quoteStudy.role}
+                    WeRoute Systems · Lead Developer
                   </span>
-                </div>
-                <div className="horizontal-panel__meta-right">
-                  <Lock size={12} color="var(--color-marker-red)" />
-                  <span>CONFIDENTIALITY SAFE · SIMPLIFIED ARCHITECTURE</span>
                 </div>
               </div>
 
@@ -204,78 +199,90 @@ export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ di
                       className="horizontal-panel__subtitle"
                       style={{ color: 'var(--color-marker-red)' }}
                     >
-                      FROM REQUIREMENTS TO APPROVED PROPOSALS.
+                      FROM A VAGUE BRIEF TO AN APPROVED QUOTE.
                     </span>
                     <h3 className="horizontal-panel__title">
-                      {quoteStudy.title}
+                      AI Quotation & Recommendation Platform
                     </h3>
-                    <p className="horizontal-panel__summary">
-                      {quoteStudy.tagline} {quoteStudy.solutionNarrative}
-                    </p>
+                    <div style={{ marginTop: '0.55rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                      <p style={{ margin: 0, fontSize: '0.86rem', lineHeight: 1.5, color: 'var(--color-ink-secondary)' }}>
+                        A requirement comes in, a trained model predicts the relevant products, an LLM drafts the proposal, and a reviewer approves before it reaches a client.
+                      </p>
+                      <p style={{ margin: 0, fontSize: '0.86rem', lineHeight: 1.5, color: 'var(--color-ink-primary)', fontWeight: 500 }}>
+                        The brief was “can AI help with quotations?” I watched sales build one first. The slow part wasn’t writing the proposal — it was hunting through the catalogue deciding what belonged in it. So the model came first.
+                      </p>
+                    </div>
                   </div>
 
                   {/* Problem & Solution Callout */}
-                  <div className="horizontal-panel__callout">
+                  <div className="horizontal-panel__callout" style={{ margin: '0.55rem 0', padding: '0.55rem 0.75rem' }}>
                     <div className="horizontal-panel__callout-row">
                       <span className="horizontal-panel__callout-label" style={{ color: 'var(--color-marker-red)' }}>
                         Challenge:
                       </span>
-                      <span className="horizontal-panel__callout-desc">
-                        Manual line-item matching against thousands of catalogue products was slow, prone to pricing inaccuracies, and created sales bottlenecks.
+                      <span className="horizontal-panel__callout-desc" style={{ fontSize: '0.8rem', lineHeight: 1.45 }}>
+                        Two hours per quote, mostly spent searching thousands of products. Output varied depending on who built it.
                       </span>
                     </div>
-                    <div className="horizontal-panel__callout-row">
+                    <div className="horizontal-panel__callout-row" style={{ marginTop: '4px' }}>
                       <span className="horizontal-panel__callout-label" style={{ color: 'var(--color-cobalt)' }}>
                         Architecture:
                       </span>
-                      <span className="horizontal-panel__callout-desc">
-                        Multi-stage pipeline uniting PyTorch candidate item ranking, LLM proposal drafting with Pydantic JSON schemas, and confidence-gated human review.
+                      <span className="horizontal-panel__callout-desc" style={{ fontSize: '0.8rem', lineHeight: 1.45 }}>
+                        Recommendation model for line-item prediction, LLM drafting constrained by Pydantic schemas, confidence gate routing anything uncertain to a human.
                       </span>
                     </div>
                   </div>
 
                   {/* Metrics Row */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', margin: '0.5rem 0' }}>
-                    {quoteStudy.metrics.map((m) => (
-                      <div
-                        key={m.id}
-                        style={{
-                          background: '#FCFAF4',
-                          border: '1px solid rgba(28,27,25,0.1)',
-                          padding: '8px 10px',
-                          borderRadius: '2px'
-                        }}
-                      >
-                        <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--color-ink-muted)' }}>
-                          {m.label}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', margin: '0.35rem 0' }}>
+                    <div
+                      style={{
+                        background: '#FCFAF4',
+                        border: '1px solid rgba(28,27,25,0.1)',
+                        padding: '7px 10px',
+                        borderRadius: '2px'
+                      }}
+                    >
+                      <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--color-ink-muted)', textTransform: 'uppercase' }}>
+                        TOP RECOMMENDATION ACCURACY
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-cobalt)' }}>
+                          87%
                         </span>
-                        {disclosureMode ? (
-                          <div>
-                            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 900, color: 'var(--color-cobalt)', display: 'block' }}>
-                              {m.reportedMetric}
-                            </span>
-                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--color-muted-green)', fontWeight: 600 }}>
-                              ✓ Authorized Metric
-                            </span>
-                          </div>
-                        ) : (
-                          <div>
-                            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-ink-primary)', display: 'block' }}>
-                              {m.qualitativeDescription}
-                            </span>
-                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--color-ink-muted)', marginTop: '2px', display: 'block' }}>
-                              [Confidential: Metric Withheld]
-                            </span>
-                          </div>
-                        )}
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--color-ink-secondary)', fontWeight: 600 }}>
+                          Recall@K
+                        </span>
                       </div>
-                    ))}
+                    </div>
+
+                    <div
+                      style={{
+                        background: '#FCFAF4',
+                        border: '1px solid rgba(28,27,25,0.1)',
+                        padding: '7px 10px',
+                        borderRadius: '2px'
+                      }}
+                    >
+                      <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--color-ink-muted)', textTransform: 'uppercase' }}>
+                        QUOTATION TURNAROUND
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-cobalt)' }}>
+                          70% faster
+                        </span>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--color-ink-secondary)', fontWeight: 600 }}>
+                          Turnaround
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Footer: Tech Tags & Read Case Study */}
                   <div className="horizontal-panel__footer-row">
                     <div className="horizontal-panel__tech-tags">
-                      {quoteStudy.technologies.slice(0, 5).map((tech) => (
+                      {['Python', 'PyTorch', 'Scikit-learn', 'MLflow', 'FastAPI'].map((tech) => (
                         <span key={tech} className="horizontal-panel__tech-pill">{tech}</span>
                       ))}
                     </div>
@@ -295,7 +302,6 @@ export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ di
                         <span className="blueprint-header__title">
                           <Workflow size={14} /> FIG 1.0 / PROPOSAL WORKFLOW
                         </span>
-                        <span className="blueprint-header__meta">CONFIDENTIALITY-FIRST DESIGN</span>
                       </div>
 
                       {/* Workflow Step Nodes */}
@@ -316,21 +322,22 @@ export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ di
                         ))}
                       </div>
 
-                      {/* Deterministic Schema Box */}
+                      {/* Why Structured Outputs Box */}
                       <div className="blueprint-feature-box">
                         <div className="blueprint-feature-box__header">
                           <CheckCircle size={12} />
-                          <span>Pydantic Deterministic Schema Enforcement</span>
+                          <span>WHY STRUCTURED OUTPUTS</span>
                         </div>
                         <div className="blueprint-feature-box__content">
-                          Guaranteed JSON schema output eliminates pricing hallucinations. All low-confidence predictions escalate automatically to specialist queues.
+                          First version returned prose. Content was right, but pricing still had to be re-keyed downstream, which erased the time saving. The failure that mattered wasn’t a wrong answer — it was an unusable one.
                         </div>
                       </div>
                     </div>
 
                     <div className="blueprint-footer-note">
-                      <span>✓ PyTorch + Scikit-learn + FastAPI</span>
-                      <span>Review Gate: &gt;0.85 Confidence Threshold</span>
+                      <span>✓ PyTorch · Scikit-learn · FastAPI</span>
+                      <span style={{ color: 'rgba(255, 255, 255, 0.25)' }}>|</span>
+                      <span>Confidence-gated human review</span>
                     </div>
                   </div>
                 </div>
@@ -366,10 +373,6 @@ export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ di
                     {ragStudy.employer} · {ragStudy.role}
                   </span>
                 </div>
-                <div className="horizontal-panel__meta-right">
-                  <Lock size={12} color="var(--color-marker-red)" />
-                  <span>CONFIDENTIALITY SAFE · SIMPLIFIED ARCHITECTURE</span>
-                </div>
               </div>
 
               {/* 2-Column Grid */}
@@ -381,72 +384,84 @@ export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ di
                       className="horizontal-panel__subtitle"
                       style={{ color: 'var(--color-cobalt)' }}
                     >
-                      FIND. UNDERSTAND. ANSWER WITH SOURCE.
+                      FIND. UNDERSTAND. ANSWER WITH A SOURCE.
                     </span>
                     <h3 className="horizontal-panel__title">
-                      {ragStudy.title}
+                      Enterprise NLP Chatbot & Knowledge Assistant
                     </h3>
-                    <p className="horizontal-panel__summary">
-                      {ragStudy.tagline} {ragStudy.solutionNarrative}
-                    </p>
+                    <div style={{ marginTop: '0.55rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                      <p style={{ margin: 0, fontSize: '0.86rem', lineHeight: 1.5, color: 'var(--color-ink-secondary)' }}>
+                        An assistant that answers questions from company documentation, cites where each answer came from, and hands off to a person when it isn’t sure.
+                      </p>
+                      <p style={{ margin: 0, fontSize: '0.86rem', lineHeight: 1.5, color: 'var(--color-ink-primary)', fontWeight: 500 }}>
+                        Most of the work went into the layer underneath the model: document taxonomy, chunking strategy, metadata schema. That’s where answer relevance actually came from — not from the prompt.
+                      </p>
+                    </div>
                   </div>
 
                   {/* Problem & Solution Callout */}
-                  <div className="horizontal-panel__callout">
+                  <div className="horizontal-panel__callout" style={{ margin: '0.55rem 0', padding: '0.55rem 0.75rem' }}>
                     <div className="horizontal-panel__callout-row">
                       <span className="horizontal-panel__callout-label" style={{ color: 'var(--color-marker-red)' }}>
                         Challenge:
                       </span>
-                      <span className="horizontal-panel__callout-desc">
-                        Engineering experts overwhelmed by repetitive queries regarding technical specifications, SLAs, and compliance documentation.
+                      <span className="horizontal-panel__callout-desc" style={{ fontSize: '0.8rem', lineHeight: 1.45 }}>
+                        The same questions about specs, SLAs and compliance kept reaching a handful of subject matter experts, burning senior time on answers that already existed in the docs.
                       </span>
                     </div>
-                    <div className="horizontal-panel__callout-row">
+                    <div className="horizontal-panel__callout-row" style={{ marginTop: '4px' }}>
                       <span className="horizontal-panel__callout-label" style={{ color: 'var(--color-cobalt)' }}>
                         Architecture:
                       </span>
-                      <span className="horizontal-panel__callout-desc">
-                        DOCUMENTS → CHUNKING & EMBEDDINGS → HYBRID VECTOR RETRIEVAL → RERANKING → GROUNDED ANSWER WITH CITATIONS & ESCALATION.
+                      <span className="horizontal-panel__callout-desc" style={{ fontSize: '0.8rem', lineHeight: 1.45 }}>
+                        Hybrid retrieval over structured documents, cross-encoder reranking, generation constrained to retrieved excerpts, and confidence-based escalation to a human.
                       </span>
                     </div>
                   </div>
 
                   {/* Metrics Row */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', margin: '0.5rem 0' }}>
-                    {ragStudy.metrics.map((m) => (
-                      <div
-                        key={m.id}
-                        style={{
-                          background: '#FCFAF4',
-                          border: '1px solid rgba(28,27,25,0.1)',
-                          padding: '8px 10px',
-                          borderRadius: '2px'
-                        }}
-                      >
-                        <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--color-ink-muted)' }}>
-                          {m.label}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', margin: '0.35rem 0' }}>
+                    <div
+                      style={{
+                        background: '#FCFAF4',
+                        border: '1px solid rgba(28,27,25,0.1)',
+                        padding: '7px 10px',
+                        borderRadius: '2px'
+                      }}
+                    >
+                      <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--color-ink-muted)', textTransform: 'uppercase' }}>
+                        ANSWER ACCURACY
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-cobalt)' }}>
+                          88%
                         </span>
-                        {disclosureMode ? (
-                          <div>
-                            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 900, color: 'var(--color-cobalt)', display: 'block' }}>
-                              {m.reportedMetric}
-                            </span>
-                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--color-muted-green)', fontWeight: 600 }}>
-                              ✓ Authorized Metric
-                            </span>
-                          </div>
-                        ) : (
-                          <div>
-                            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-ink-primary)', display: 'block' }}>
-                              {m.qualitativeDescription}
-                            </span>
-                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--color-ink-muted)', marginTop: '2px', display: 'block' }}>
-                              [Confidential: Metric Withheld]
-                            </span>
-                          </div>
-                        )}
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--color-ink-secondary)', fontWeight: 600 }}>
+                          Golden dataset
+                        </span>
                       </div>
-                    ))}
+                    </div>
+
+                    <div
+                      style={{
+                        background: '#FCFAF4',
+                        border: '1px solid rgba(28,27,25,0.1)',
+                        padding: '7px 10px',
+                        borderRadius: '2px'
+                      }}
+                    >
+                      <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--color-ink-muted)', textTransform: 'uppercase' }}>
+                        ROUTINE QUERIES DEFLECTED
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-cobalt)' }}>
+                          60%
+                        </span>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--color-ink-secondary)', fontWeight: 600 }}>
+                          Deflected from experts
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Footer: Tech Tags & Read Case Study */}
@@ -472,7 +487,6 @@ export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ di
                         <span className="blueprint-header__title">
                           <Database size={14} /> FIG 2.0 / GROUNDED RAG PIPELINE
                         </span>
-                        <span className="blueprint-header__meta">CITATION GUARDRAILS</span>
                       </div>
 
                       {/* Workflow Step Nodes */}
@@ -543,10 +557,6 @@ export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ di
                     {mlopsStudy.employer} · {mlopsStudy.role}
                   </span>
                 </div>
-                <div className="horizontal-panel__meta-right">
-                  <Lock size={12} color="var(--color-marker-red)" />
-                  <span>CONFIDENTIALITY SAFE · SIMPLIFIED ARCHITECTURE</span>
-                </div>
               </div>
 
               {/* 2-Column Grid */}
@@ -561,69 +571,81 @@ export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ di
                       BUILD. DEPLOY. MONITOR. IMPROVE.
                     </span>
                     <h3 className="horizontal-panel__title">
-                      {mlopsStudy.title}
+                      Document Intelligence & MLOps Platform
                     </h3>
-                    <p className="horizontal-panel__summary">
-                      {mlopsStudy.tagline} {mlopsStudy.solutionNarrative}
-                    </p>
+                    <div style={{ marginTop: '0.55rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                      <p style={{ margin: 0, fontSize: '0.86rem', lineHeight: 1.5, color: 'var(--color-ink-secondary)' }}>
+                        The pipeline that turns scanned and semi-structured enterprise documents into searchable data, plus the deployment backbone every AI service at the company now runs on.
+                      </p>
+                      <p style={{ margin: 0, fontSize: '0.86rem', lineHeight: 1.5, color: 'var(--color-ink-primary)', fontWeight: 500 }}>
+                        My first build worked on clean documents and failed quietly on real ones — confident answers assembled from partial context that nobody caught because they read well. I stopped adding features and ran error analysis instead.
+                      </p>
+                    </div>
                   </div>
 
                   {/* Problem & Solution Callout */}
-                  <div className="horizontal-panel__callout">
+                  <div className="horizontal-panel__callout" style={{ margin: '0.55rem 0', padding: '0.55rem 0.75rem' }}>
                     <div className="horizontal-panel__callout-row">
                       <span className="horizontal-panel__callout-label" style={{ color: 'var(--color-marker-red)' }}>
                         Challenge:
                       </span>
-                      <span className="horizontal-panel__callout-desc">
-                        Manual deployment bottlenecks, model performance degradation as document formats drifted, and absence of verifiable audit trails.
+                      <span className="horizontal-panel__callout-desc" style={{ fontSize: '0.8rem', lineHeight: 1.45 }}>
+                        Years of knowledge locked in scans and inconsistent formats. Every new model deployed ad hoc, with no way to tell when one had quietly degraded.
                       </span>
                     </div>
-                    <div className="horizontal-panel__callout-row">
+                    <div className="horizontal-panel__callout-row" style={{ marginTop: '4px' }}>
                       <span className="horizontal-panel__callout-label" style={{ color: 'var(--color-cobalt)' }}>
                         Architecture:
                       </span>
-                      <span className="horizontal-panel__callout-desc">
-                        TRAIN & EVALUATE → CI/CD REGRESSION → CANARY ROLLOUT ON K8S → DRIFT MONITORING → AUTOMATED RETRAINING & ROLLBACK.
+                      <span className="horizontal-panel__callout-desc" style={{ fontSize: '0.8rem', lineHeight: 1.45 }}>
+                        OCR and layout-aware parsing, structure-aware chunking, embedding and vector indexing, with CI/CD, canary releases, drift monitoring and automated retraining around it.
                       </span>
                     </div>
                   </div>
 
                   {/* Metrics Row */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', margin: '0.5rem 0' }}>
-                    {mlopsStudy.metrics.map((m) => (
-                      <div
-                        key={m.id}
-                        style={{
-                          background: '#FCFAF4',
-                          border: '1px solid rgba(28,27,25,0.1)',
-                          padding: '8px 10px',
-                          borderRadius: '2px'
-                        }}
-                      >
-                        <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--color-ink-muted)' }}>
-                          {m.label}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', margin: '0.35rem 0' }}>
+                    <div
+                      style={{
+                        background: '#FCFAF4',
+                        border: '1px solid rgba(28,27,25,0.1)',
+                        padding: '7px 10px',
+                        borderRadius: '2px'
+                      }}
+                    >
+                      <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--color-ink-muted)', textTransform: 'uppercase' }}>
+                        MANUAL PROCESSING REDUCTION
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-cobalt)' }}>
+                          80%
                         </span>
-                        {disclosureMode ? (
-                          <div>
-                            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 900, color: 'var(--color-cobalt)', display: 'block' }}>
-                              {m.reportedMetric}
-                            </span>
-                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--color-muted-green)', fontWeight: 600 }}>
-                              ✓ Authorized Metric
-                            </span>
-                          </div>
-                        ) : (
-                          <div>
-                            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-ink-primary)', display: 'block' }}>
-                              {m.qualitativeDescription}
-                            </span>
-                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--color-ink-muted)', marginTop: '2px', display: 'block' }}>
-                              [Confidential: Metric Withheld]
-                            </span>
-                          </div>
-                        )}
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--color-ink-secondary)', fontWeight: 600 }}>
+                          Manual reduction
+                        </span>
                       </div>
-                    ))}
+                    </div>
+
+                    <div
+                      style={{
+                        background: '#FCFAF4',
+                        border: '1px solid rgba(28,27,25,0.1)',
+                        padding: '7px 10px',
+                        borderRadius: '2px'
+                      }}
+                    >
+                      <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--color-ink-muted)', textTransform: 'uppercase' }}>
+                        FEWER DEPLOYMENT FAILURES
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-cobalt)' }}>
+                          40%
+                        </span>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--color-ink-secondary)', fontWeight: 600 }}>
+                          Failure drop
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Footer: Tech Tags & Read Case Study */}
@@ -649,7 +671,6 @@ export const HorizontalCaseStudies: React.FC<HorizontalCaseStudiesProps> = ({ di
                         <span className="blueprint-header__title">
                           <Activity size={14} /> FIG 3.0 / PRODUCTION MLOPS LIFECYCLE
                         </span>
-                        <span className="blueprint-header__meta">ISO/IEC 42001 GOVERNANCE</span>
                       </div>
 
                       {/* Workflow Step Nodes */}

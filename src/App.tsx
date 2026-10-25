@@ -8,9 +8,6 @@ import { PaperGrain } from './components/analog/PaperGrain';
 import { SiteNavigation } from './components/SiteNavigation';
 import { EditorialCover } from './components/EditorialCover';
 import { ProjectTimeline } from './components/ProjectTimeline';
-import { QuotationPlatformExplainer } from './components/QuotationPlatformExplainer';
-import { EnterpriseChatbotExplainer } from './components/EnterpriseChatbotExplainer';
-import { DocumentIntelligenceMLOpsExplainer } from './components/DocumentIntelligenceMLOpsExplainer';
 import { AiQualitySection } from './components/AiQualitySection';
 import { ExperienceSection } from './components/ExperienceSection';
 import { AiStackSection } from './components/AiStackSection';
@@ -42,25 +39,16 @@ export function App() {
         {/* Chapter 01: Three Featured Professional AI Case Studies (Cinematic Horizontal Scroll) */}
         <ProjectTimeline />
 
-        {/* Chapter 02: Deep-Dive: AI Quotation & Recommendation Platform */}
-        <QuotationPlatformExplainer />
-
-        {/* Chapter 03: Deep-Dive: Enterprise NLP Chatbot & Knowledge Assistant */}
-        <EnterpriseChatbotExplainer />
-
-        {/* Chapter 04: Deep-Dive: Document Intelligence RAG & MLOps Platform */}
-        <DocumentIntelligenceMLOpsExplainer />
-
-        {/* Chapter 05: Dedicated AI Evaluation & Production Quality Section */}
+        {/* Chapter 02: Dedicated AI Evaluation & Production Quality Section */}
         <AiQualitySection />
 
-        {/* Chapter 06: Professional Experience (WeRoute Systems & Amazon) */}
+        {/* Chapter 03: Professional Experience (WeRoute Systems & Amazon) */}
         <ExperienceSection />
 
-        {/* Chapter 07: Comprehensive AI/ML & Infrastructure Stack */}
+        {/* Chapter 04: Comprehensive AI/ML & Infrastructure Stack */}
         <AiStackSection />
 
-        {/* Chapter 08: Verified Contact Channels & Editorial Colophon */}
+        {/* Chapter 05: Verified Contact Channels & Editorial Colophon */}
         <EndCard />
       </main>
     </div>

@@ -8,38 +8,7 @@ interface MaskingTapeProps {
   style?: React.CSSProperties;
 }
 
-export const MaskingTape: React.FC<MaskingTapeProps> = ({
-  position = 'top-center',
-  rotate,
-  width,
-  className = '',
-  style = {}
-}) => {
-  const getPositionClass = () => {
-    switch (position) {
-      case 'top-left':
-        return 'tape-top-left';
-      case 'top-right':
-        return 'tape-top-right';
-      case 'diagonal-corner':
-        return 'tape-diagonal-corner';
-      case 'top-center':
-      default:
-        return 'tape-top-center';
-    }
-  };
+// In modern sleek tech mode, physical masking tape is stripped for clean minimalist cards
+export const MaskingTape: React.FC<MaskingTapeProps> = () => null;
 
-  const combinedStyle: React.CSSProperties = {
-    ...style,
-    ...(rotate !== undefined ? { transform: `rotate(${rotate}deg)` } : {}),
-    ...(width !== undefined ? { width: typeof width === 'number' ? `${width}px` : width } : {})
-  };
-
-  return (
-    <div
-      className={`masking-tape ${position !== 'custom' ? getPositionClass() : ''} ${className}`}
-      style={combinedStyle}
-      aria-hidden="true"
-    />
-  );
-};
+export default MaskingTape;

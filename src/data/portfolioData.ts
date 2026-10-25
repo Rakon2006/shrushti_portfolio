@@ -34,6 +34,11 @@ export interface CaseStudy {
   technologies: string[];
   metrics: MetricItem[];
   discussionNotes: string;
+  keyDecision?: string;
+  threeDecisions?: { title: string; desc: string }[];
+  whatIGotWrong?: string;
+  errorAnalysis?: string;
+  whatIdDoDifferently?: string;
   route: string;
 }
 
@@ -164,7 +169,7 @@ export const portfolioData: PortfolioData = {
     email: "srushtilohiya@gmail.com",
     phone: "+91 8007415005",
     experienceSummary: "3+ years building production Machine Learning, Generative AI, retrieval pipelines, and MLOps platforms.",
-    manifesto: "I build AI systems that move from experimentation to production.",
+    manifesto: "I build AI systems that work after the demo.",
     openingHeadline: [
       "AI SYSTEMS.",
       "BUILT FOR",
@@ -172,7 +177,7 @@ export const portfolioData: PortfolioData = {
     ],
     openingEyebrow: "SRUSHTI LOHIYA / AI ENGINEERING FIELD NOTES",
     descriptor: "MACHINE LEARNING · GENERATIVE AI · MLOPS",
-    openingLede: "I build production AI systems across machine learning, LLM applications, retrieval pipelines, and MLOps — from data preparation and evaluation to reliable deployment.",
+    openingLede: "I build AI systems that work after the demo.\n\nThree years of production machine learning, LLM applications, retrieval pipelines and the MLOps underneath them. Most of my time goes to the unglamorous half: knowing whether a system is actually working, and catching it when it stops.",
     annotations: [
       "From model experiments to production systems.",
       "Evaluate before release.",
@@ -195,43 +200,29 @@ export const portfolioData: PortfolioData = {
       len: 4.2
     },
     {
-      id: "quotation",
-      num: "02",
-      title: "AI QUOTATION & RECOMMENDATION",
-      color: "var(--color-marker-red)",
-      len: 4.0
-    },
-    {
-      id: "assistant",
-      num: "03",
-      title: "ENTERPRISE NLP & KNOWLEDGE RAG",
-      color: "var(--color-ink-primary)",
-      len: 3.8
-    },
-    {
-      id: "mlops",
-      num: "04",
-      title: "DOCUMENT INTELLIGENCE & MLOPS",
-      color: "var(--color-muted-green)",
-      len: 4.2
-    },
-    {
       id: "quality",
-      num: "05",
+      num: "02",
       title: "AI EVALUATION & RELIABILITY",
       color: "var(--color-cobalt)",
       len: 3.4
     },
     {
       id: "experience",
-      num: "06",
+      num: "03",
       title: "ENGINEERING TIMELINE",
       color: "var(--color-ink-primary)",
       len: 3.6
     },
     {
+      id: "skills",
+      num: "04",
+      title: "AI STACK & ARCHITECTURE",
+      color: "var(--color-muted-green)",
+      len: 3.2
+    },
+    {
       id: "colophon",
-      num: "07",
+      num: "05",
       title: "BUILD RELIABLE AI SYSTEMS",
       color: "var(--color-ink-primary)",
       len: 2.4
@@ -243,22 +234,39 @@ export const portfolioData: PortfolioData = {
       number: "01",
       title: "AI Quotation & Recommendation Platform",
       role: "Lead Developer",
-      employer: "WeRoute Systems Pvt Ltd",
-      period: "2024–Present",
+      employer: "WeRoute Systems",
+      period: "2024–2025",
       location: "Bengaluru, India",
-      tagline: "Automated proposal formulation uniting ML item prediction, LLM drafting, and strict human verification.",
+      tagline: "FROM A VAGUE BRIEF TO AN APPROVED QUOTE.",
       confidentialityNotice: "Selected professional work. Source code and internal implementation details are not publicly available. Architecture is simplified and illustrative.",
-      businessProblem: "Enterprise proposal creation previously required sales engineers and quotation teams to manually parse complex customer specifications, match line items against thousands of catalogue products, calculate volume tiers, and draft custom proposals. The manual process took days, introduced pricing inaccuracies, and created severe sales-pipeline bottlenecks.",
+      businessProblem: "Sales built every client quotation by hand. Someone read a requirement, searched the product catalogue, picked line items, worked out pricing, and wrote the proposal. About two hours per quote, and two people given the same requirement would produce noticeably different quotes.\n\nThe brief I got was one sentence: “can AI help with quotations?”\n\nBefore writing anything, I sat with two of them and watched the whole process. That hour decided the project. I’d assumed the slow part was writing the proposal — it took fifteen minutes. The slow part was the catalogue: scrolling, cross-referencing, checking compatibility, deciding what belonged. If I’d built what was asked for, I’d have automated the fifteen minutes.",
       whyItMattered: "Quotation turnaround speed is directly correlated with commercial win rates. Delivering rapid, mathematically consistent, and policy-compliant proposals without overburdening domain specialists was critical for business scaling.",
-      srushtiRole: "Lead Developer: Spearheaded end-to-end technical system design, machine learning recommendation architecture, prompt chaining pipelines, type-safe schema validation, and confidence-gated human review workflows.",
-      solutionNarrative: "Built an intelligent multi-stage pipeline: Customer requirements and RFPs are parsed and vectorized into an item feature space. A hybrid ML recommendation engine (PyTorch & Scikit-learn) predicts the top candidate products and bill-of-materials line items. An LLM orchestration layer drafts proposal narratives constrained by Pydantic JSON schemas, feeding verified prices directly into enterprise ERP/billing systems. Low-confidence predictions trigger automated routing to human reviewers before final dispatch.",
+      srushtiRole: "Lead Developer · WeRoute Systems · 2024–2025: Led recommendation model engineering, prompt chaining pipelines, type-safe schema constraints, and human-in-the-loop review queues.",
+      solutionNarrative: "A requirement comes in, a trained model predicts the relevant products, an LLM drafts the proposal, and a reviewer approves before it reaches a client.\n\nThe brief was “can AI help with quotations?” I watched sales build one first. The slow part wasn’t writing the proposal — it was hunting through the catalogue deciding what belonged in it. So the model came first.",
+      keyDecision: "Structured outputs over fluent prose. My first version returned well-written proposals. The content was usually right, but pricing and line items still had to be re-keyed into downstream systems by hand — which erased most of the time saving. I rebuilt it with type-safe schemas so data flows through without manual correction. The failure that mattered wasn’t a wrong answer, it was an unusable one.",
+      threeDecisions: [
+        {
+          title: "Model first, language second",
+          desc: "The sequence mattered more than either component. Most of the value was in the prediction, so that got built and validated before the drafting layer existed."
+        },
+        {
+          title: "Structured outputs over fluent prose",
+          desc: "My first version returned well-written proposals. The content was usually right, but pricing and line items still had to be re-keyed into downstream systems by hand — which erased most of the time saving. I rebuilt it with type-safe schemas so data flows through without manual correction. The failure that mattered wasn’t a wrong answer, it was an unusable one."
+        },
+        {
+          title: "Precision over coverage",
+          desc: "I tuned the model to suggest fewer items with higher confidence rather than more items with lower. A missing suggestion costs a reviewer thirty seconds. A wrong one that reaches a client costs considerably more."
+        }
+      ],
+      whatIGotWrong: "The training data was messier than I expected. Years of historical quotations with the same product spelled four different ways, free-text requirements, duplicates. My first model also learned to predict the popular products, because a small set of items appeared in most quotes — the class distribution was badly skewed and I hadn’t handled it explicitly. Fixing that was most of the modelling work.",
+      errorAnalysis: "The aggregate accuracy was less useful than the error analysis. Looking at which requirement types failed told me more than the overall number — ambiguous or unusually short requirements were where it struggled, which is also where a human would ask a clarifying question. That shaped where the confidence threshold sat.",
+      whatIdDoDifferently: "Design the output contract before tuning the model. The integration format nearly killed the time saving, and it was knowable from day one.",
       conceptualArchitecture: {
         steps: [
-          { name: "Requirement Ingestion", desc: "Structured parsing of incoming RFPs, requirements, and volume constraints", tag: "FastAPI / Ingestion" },
-          { name: "Feature Prep & Embedding", desc: "Vector similarity mapping and feature normalization across catalog attributes", tag: "Vector DB / Scikit-learn" },
-          { name: "ML Recommendation Engine", desc: "Predicts high-probability product configurations and compatible line items", tag: "PyTorch / MLflow" },
-          { name: "LLM Proposal Drafting", desc: "Generates context-rich proposal narrative with strict type-safe schema constraints", tag: "LLM API / Pydantic" },
-          { name: "Human Review Gate", desc: "Confidence score threshold check: flags ambiguous items for specialist approval", tag: "Human-in-the-Loop" }
+          { name: "Requirement Ingestion", desc: "Unstructured requirements parsed into a structured form.", tag: "FastAPI / Ingestion" },
+          { name: "Recommendation Model", desc: "Predicts relevant products and line items.", tag: "PyTorch / MLflow" },
+          { name: "LLM Drafting", desc: "Composes the proposal text, output constrained to a schema.", tag: "LLM API / Pydantic" },
+          { name: "Human Approval", desc: "Low-confidence predictions flagged; a reviewer signs off before anything reaches a client.", tag: "Human-in-the-Loop" }
         ]
       },
       keyComponents: [
@@ -278,24 +286,32 @@ export const portfolioData: PortfolioData = {
         "Graceful degradation: If LLM service encounters rate-limits, system outputs verified template drafts with ML items"
       ],
       technologies: [
-        "Python", "PyTorch", "Scikit-learn", "MLflow", "FastAPI", "LLM APIs", "Vector Database", "Docker", "Kubernetes", "AWS"
+        "Python", "PyTorch", "Scikit-learn", "MLflow", "FastAPI"
       ],
       metrics: [
         {
           id: "quote-acc",
           label: "Top Recommendation Accuracy",
           reportedMetric: "87%",
-          qualitativeDescription: "High-confidence catalogue ranking across complex enterprise requirements",
-          publiclyApproved: false, // Default hidden per confidentiality requirement
-          detail: "Reported outcome on catalogue recommendation precision"
+          qualitativeDescription: "87% top recommendation accuracy (Recall@K on a held-out set)",
+          publiclyApproved: true,
+          detail: "Recall@K"
         },
         {
           id: "quote-time",
           label: "Quotation Turnaround",
-          reportedMetric: "70% reduction",
-          qualitativeDescription: "Substantial acceleration of quotation generation and review cycles",
-          publiclyApproved: false, // Default hidden per confidentiality requirement
-          detail: "Reported operational turnaround time reduction"
+          reportedMetric: "70% faster",
+          qualitativeDescription: "70% faster quotation turnaround",
+          publiclyApproved: true,
+          detail: "Turnaround"
+        },
+        {
+          id: "quote-zero",
+          label: "Manual Correction",
+          reportedMetric: "Zero",
+          qualitativeDescription: "Zero manual correction on structured line-item output",
+          publiclyApproved: true,
+          detail: "Downstream re-keying"
         }
       ],
       discussionNotes: "Discussion topics safe for interview: Feature representation for high-cardinality catalogues, prompt constraints for deterministic pricing schemas, and designing human-in-the-loop review queues.",
@@ -309,19 +325,20 @@ export const portfolioData: PortfolioData = {
       employer: "WeRoute Systems Pvt Ltd",
       period: "2024–Present",
       location: "Bengaluru, India",
-      tagline: "Grounded multi-turn enterprise knowledge assistant with verifiable citations and human escalation.",
+      tagline: "FIND. UNDERSTAND. ANSWER WITH A SOURCE.",
       confidentialityNotice: "Selected professional work. Source code and internal implementation details are not publicly available. Architecture is simplified and illustrative.",
-      businessProblem: "Subject matter experts and technical support teams were overwhelmed by repetitive queries regarding technical product specifications, SLAs, enterprise pricing tiers, and internal compliance policies stored in heterogeneous document repositories.",
+      businessProblem: "The same questions about specs, SLAs and compliance kept reaching a handful of subject matter experts, burning senior time on answers that already existed in the docs.",
       whyItMattered: "Support latency frustrated clients and wasted expensive engineering hours. Off-the-shelf generative chat tools risked hallucinating critical contractual terms or misinterpreting nuanced technical policies.",
       srushtiRole: "Senior AI/ML Engineer: Designed retrieval architecture, chunking and embedding strategies, multi-step LangChain & LangGraph workflows, cross-encoder reranking, and citation-grounded hallucination guardrails.",
-      solutionNarrative: "Engineered a production-grade Retrieval-Augmented Generation (RAG) assistant. Documents are categorized into structured taxonomies and chunked with context-preserving metadata. Incoming questions pass through intent classification, hybrid retrieval (BM25 + dense vector search), and cross-encoder reranking. The reasoning layer constructs responses grounded strictly in retrieved excerpts, providing clickable source references. When retrieval relevance falls below confidence thresholds, the system escalates directly to human subject matter experts.",
+      solutionNarrative: "An assistant that answers questions from company documentation, cites where each answer came from, and hands off to a person when it isn’t sure.\n\nMost of the work went into the layer underneath the model: document taxonomy, chunking strategy, metadata schema. That’s where answer relevance actually came from — not from the prompt.",
+      keyDecision: "Most of the work went into the layer underneath the model: document taxonomy, chunking strategy, metadata schema. That’s where answer relevance actually came from — not from the prompt.",
       conceptualArchitecture: {
         steps: [
-          { name: "Query Normalization", desc: "Intent classification, query expansion, and multi-turn conversational context tracking", tag: "LangGraph / Intent" },
-          { name: "Hybrid Retrieval", desc: "Dual dense embedding similarity and sparse keyword search across verified document stores", tag: "Vector Search / FAISS" },
-          { name: "Cross-Encoder Reranking", desc: "Precision reranking of candidate chunks to maximize information density in context window", tag: "Reranker / PyTorch" },
-          { name: "Grounded Generation", desc: "Synthesis restricted strictly to verified excerpts with inline source citations", tag: "LLM / Guardrails" },
-          { name: "Human Escalation Path", desc: "Uncertain or low-overlap queries trigger ticket generation to human specialists", tag: "Escalation Fallback" }
+          { name: "Query Normalization", desc: "Intent classification, query expansion, and context tracking", tag: "LangGraph / Intent" },
+          { name: "Hybrid Retrieval", desc: "Dense embedding similarity and sparse keyword search across docs", tag: "Vector Search / FAISS" },
+          { name: "Cross-Encoder Reranking", desc: "Reranks candidate chunks to maximize information density in context", tag: "Reranker / PyTorch" },
+          { name: "Grounded Generation", desc: "Synthesis restricted strictly to verified excerpts with inline citations", tag: "LLM / Guardrails" },
+          { name: "Human Escalation Path", desc: "Low-confidence queries trigger ticket routing to human specialists", tag: "Escalation Fallback" }
         ]
       },
       keyComponents: [
@@ -348,17 +365,17 @@ export const portfolioData: PortfolioData = {
           id: "bot-acc",
           label: "Answer Accuracy",
           reportedMetric: "88%",
-          qualitativeDescription: "High-precision grounded responses validated against benchmark question sets",
-          publiclyApproved: false, // Default hidden per confidentiality requirement
-          detail: "Reported outcome on response factual correctness"
+          qualitativeDescription: "88% answer accuracy against a curated golden dataset",
+          publiclyApproved: true,
+          detail: "Curated golden dataset"
         },
         {
           id: "bot-deflect",
           label: "Routine Query Deflection",
           reportedMetric: "60%",
-          qualitativeDescription: "Substantial deflection of routine policy and product documentation inquiries",
-          publiclyApproved: false, // Default hidden per confidentiality requirement
-          detail: "Reported operational query deflection from expert team"
+          qualitativeDescription: "60% routine queries deflected from the expert team",
+          publiclyApproved: true,
+          detail: "Deflected from expert team"
         }
       ],
       discussionNotes: "Discussion topics safe for interview: Chunking strategies for semi-structured documents, mitigating RAG hallucinations via cross-encoders, and designing graceful escalation paths.",
@@ -367,24 +384,25 @@ export const portfolioData: PortfolioData = {
     {
       id: "document-intelligence-mlops",
       number: "03",
-      title: "Document Intelligence RAG & MLOps Platform",
+      title: "Document Intelligence & MLOps Platform",
       role: "Senior AI/ML Engineer",
       employer: "WeRoute Systems Pvt Ltd",
       period: "2024–Present",
       location: "Bengaluru, India",
-      tagline: "End-to-end document intelligence lifecycle with automated CI/CD, canary releases, and continuous governance.",
+      tagline: "BUILD. DEPLOY. MONITOR. IMPROVE.",
       confidentialityNotice: "Selected professional work. Source code and internal implementation details are not publicly available. Architecture is simplified and illustrative.",
-      businessProblem: "Enterprise document ingestion was plagued by manual data entry, brittle one-off parsers, inconsistent model deployment practices, zero drift monitoring, and absence of audit trails across production AI models.",
+      businessProblem: "Years of knowledge locked in scans and inconsistent formats. Every new model deployed ad hoc, with no way to tell when one had quietly degraded.",
       whyItMattered: "Without a unified MLOps platform, machine learning models degraded silently as document formats drifted, while manual deployment created downtime and production failures. Auditing compliance required verifiable model provenance.",
-      srushtiRole: "Senior AI/ML Engineer: Architected end-to-end document processing pipelines, automated CI/CD continuous training workflows, model registry policies, latency/drift monitoring, and ISO/IEC 42001-aligned governance.",
-      solutionNarrative: "Constructed an industrial-grade document intelligence and MLOps platform. Raw documents undergo optical character recognition (OCR), layout parsing, table extraction, chunking, and embedding into vector indices. On the operations side, automated GitHub Actions and Jenkins pipelines orchestrate continuous model validation. MLflow tracks every experiment, code commit, dataset hash, and registered artifact. Staging environments execute pre-release regression tests before canary deployments roll out to Kubernetes clusters, with automated rollbacks if latency or error thresholds breach.",
+      srushtiRole: "Senior AI/ML Engineer · WeRoute Systems: Built end-to-end document processing pipelines, automated CI/CD continuous training workflows, model registry policies, latency/drift monitoring, and ISO/IEC 42001-aligned governance.",
+      solutionNarrative: "The pipeline that turns scanned and semi-structured enterprise documents into searchable data, plus the deployment backbone every AI service at the company now runs on.\n\nMy first build worked on clean documents and failed quietly on real ones — confident answers assembled from partial context that nobody caught because they read well. I stopped adding features and ran error analysis instead.",
+      keyDecision: "Structure-aware chunking moved accuracy more than weeks of prompt tuning had. Most failures traced to OCR noise and chunking that split tables in half, not to the model.",
       conceptualArchitecture: {
         steps: [
-          { name: "Document Ingestion & OCR", desc: "Multi-format ingestion, layout-aware OCR parsing, and tabular structure extraction", tag: "OCR / Ingestion" },
-          { name: "Embedding & Vector Index", desc: "Batch embedding generation, metadata tagging, and vector index synchronization", tag: "Vector Store / Batch" },
-          { name: "MLflow Experiment Tracking", desc: "Full lineage logging of hyperparameters, golden test metrics, and model artifacts", tag: "MLflow Registry" },
-          { name: "CI/CD & Canary Release", desc: "Automated regression testing, Docker builds, and progressive canary rollouts on K8s", tag: "GitHub Actions / K8s" },
-          { name: "Observability & Drift Detection", desc: "CloudWatch monitoring of p99 latency, token budgets, data distribution, and drift", tag: "Evidently / CloudWatch" }
+          { name: "Document Ingestion & OCR", desc: "Layout-aware OCR parsing and tabular structure extraction", tag: "OCR / Ingestion" },
+          { name: "Embedding & Vector Index", desc: "Batch embedding generation and metadata synchronization", tag: "Vector Store / Batch" },
+          { name: "MLflow Experiment Tracking", desc: "Lineage tracking for hyperparameters, test metrics, and artifacts", tag: "MLflow Registry" },
+          { name: "CI/CD & Canary Release", desc: "Automated regression tests and progressive canary rollouts on K8s", tag: "GitHub Actions / K8s" },
+          { name: "Observability & Drift Detection", desc: "Production monitoring for latency, token budgets, and data drift", tag: "Evidently / CloudWatch" }
         ]
       },
       keyComponents: [
@@ -409,19 +427,19 @@ export const portfolioData: PortfolioData = {
       metrics: [
         {
           id: "ops-manual",
-          label: "Manual Processing Effort",
-          reportedMetric: "80% reduction",
-          qualitativeDescription: "Significant automation of multi-page ingestion, OCR extraction, and metadata indexing",
-          publiclyApproved: false, // Default hidden per confidentiality requirement
-          detail: "Reported outcome on document processing labor savings"
+          label: "Reduction in Manual Document Processing",
+          reportedMetric: "80%",
+          qualitativeDescription: "80% reduction in manual document processing",
+          publiclyApproved: true,
+          detail: "Manual processing reduction"
         },
         {
           id: "ops-failure",
-          label: "Deployment Failures",
-          reportedMetric: "40% reduction",
-          qualitativeDescription: "Measurable decrease in deployment incidents via automated canary gates and rollback",
-          publiclyApproved: false, // Default hidden per confidentiality requirement
-          detail: "Reported operational improvement in deployment reliability"
+          label: "Fewer Deployment Failures",
+          reportedMetric: "40%",
+          qualitativeDescription: "40% fewer deployment failures",
+          publiclyApproved: true,
+          detail: "Deployment failure reduction"
         }
       ],
       discussionNotes: "Discussion topics safe for interview: Structuring layout-aware OCR pipelines, canary release gates for LLM systems, managing model cards for ISO/IEC 42001 compliance, and drift detection.",
@@ -434,10 +452,10 @@ export const portfolioData: PortfolioData = {
       number: "01",
       name: "TicketPilot",
       badge: "OPEN-SOURCE AI / PUBLIC REPOSITORY",
-      tagline: "AI customer support that knows when to answer — and when to hand off.",
-      description: "An end-to-end support automation system combining calibrated intent classification across 27 intents, policy-aware retrieval, risk-based guardrails, and human-in-the-loop review queues.",
-      problem: "Customer-support automation has a harder problem than producing a fluent response: deciding when it is safe to respond without human intervention. A classifier can score near-perfect on benchmark datasets yet struggle with ambiguous or adversarial customer requests.",
-      solution: "Treats automation as a decision under uncertainty. Incoming requests undergo PII redaction and injection checks, calibrated multi-intent classification, policy retrieval, and guardrail verification before routing into auto-resolved, needs-review, or escalated states.",
+      tagline: "Support automation that knows when to hand off",
+      description: "The hard problem in support automation isn’t writing a fluent reply. It’s deciding when it’s safe to send one without a human.",
+      problem: "My classifier scored 99.9% on the benchmark dataset and 66.7% on realistic hand-written tickets. That gap is the whole project.",
+      solution: "TicketPilot treats automation as a decision under uncertainty: it classifies, retrieves supporting policy, checks for injection and PII, then routes to auto-resolved, needs review, or escalated and shows you the evidence behind each decision.",
       keyFeatures: [
         "Calibrated Abstention: 27-intent classifier paired with confidence thresholds to prevent premature auto-resolution",
         "Explainable AI Artifacts: Surfaces predicted intent, confidence thresholds, risk signals, injection checks, and cited policies",
@@ -467,21 +485,21 @@ export const portfolioData: PortfolioData = {
         ]
       },
       metricsOrFindings: [
-        { label: "Supported Intents", value: "27 Intents", note: "Calibrated classification across customer support domains" },
-        { label: "Safety Gate", value: "3 Tiers", note: "Auto-Resolved · Needs Review · Escalated" },
-        { label: "Architecture", value: "FastAPI + Next.js", note: "Full-stack operations console on Vercel & Render" }
+        { label: "Evaluation Gap", value: "99.9% → 66.7%", note: "Benchmark dataset vs realistic hand-written tickets" },
+        { label: "Safety Gate", value: "3 Tiers", note: "Auto-resolved · Needs review · Escalated" },
+        { label: "Stack & Demo", value: "FastAPI + Next.js", note: "Live demo, FastAPI backend, Next.js console" }
       ],
-      takeaway: "Customer support automation must optimize for calibrated abstention: knowing with mathematical certainty when an AI system should not answer."
+      takeaway: "The hard problem in support automation isn’t writing a fluent reply. It’s deciding when it’s safe to send one without a human."
     },
     {
       id: "paylens",
       number: "02",
       name: "PayLens",
       badge: "FINTECH ML / PUBLIC REPOSITORY",
-      tagline: "Explainable salary prediction with ML, conformal prediction & RAG.",
-      description: "An end-to-end machine learning system estimating US tech salaries, quantifying estimate uncertainty with conformal prediction intervals, and retrieving comparable historical job postings.",
-      problem: "A single salary figure suggests false precision that tabular data rarely supports. Furthermore, standard regression benchmarks frequently suffer from silent data leakage that inflates apparent accuracy on unseen data.",
-      solution: "Rebuilt around rigorous 5-fold GroupKFold company cross-validation, Ridge regression on structured features + TF-IDF job description n-grams, quantile LightGBM with conformal prediction calibration, and vector retrieval of 5 comparable historical postings.",
+      tagline: "Salary estimates with honest uncertainty",
+      description: "I started with a simple question: can a job description tell us something useful about salary?",
+      problem: "My first results looked good. Then I found the reason: duplicate postings leaking across validation folds, imputed targets being evaluated as real, and preprocessing fitted before cross-validation.",
+      solution: "Rebuilding it properly made the metrics worse and the conclusions defensible: RMSE went from $17.6K to $26.67K. PayLens now returns an estimate, an 80% conformal prediction interval, and five comparable historical postings, so you can question the number rather than accept it.",
       keyFeatures: [
         "80% Conformal Prediction Intervals: Quantifies uncertainty rather than presenting a single brittle point estimate",
         "Leakage-Free Validation: GroupKFold cross-validation by company, eliminating duplicate posting contamination",
@@ -490,9 +508,9 @@ export const portfolioData: PortfolioData = {
         "Interactive App & API: Streamlit operations interface backed by containerized FastAPI endpoints"
       ],
       engineeringDecisions: [
-        "Rigorous validation over flashy metrics: Replaced a leaked $17.6K RMSE with a statistically sound $26.67K RMSE",
-        "Conformal calibration: Calibrated quantile intervals provide mathematically grounded coverage guarantees",
-        "Simplicity beats complexity: Ridge regression with text TF-IDF outperformed deeper tree ensembles on this dataset"
+        "Defensible validation over flashy metrics: Accepted $26.67K RMSE over leaked $17.6K for statistical integrity",
+        "Honest uncertainty quantification: Conformal prediction provides mathematically grounded coverage intervals",
+        "Transparent evidence retrieval: Vector similarity exposes 5 comparable job postings so users can inspect the ground truth"
       ],
       technologies: [
         "Python 3.11", "Scikit-learn", "LightGBM", "Ridge Regression", "TF-IDF / SVD", "Conformal Prediction", "Streamlit", "FastAPI", "Docker"
@@ -510,11 +528,11 @@ export const portfolioData: PortfolioData = {
         ]
       },
       metricsOrFindings: [
-        { label: "Best Evaluated Model", value: "$26.67K RMSE", note: "Ridge (tabular + TF-IDF) with 5-fold GroupKFold by company" },
-        { label: "Conformal Coverage", value: "80% Interval", note: "Quantile LightGBM uncertainty bounds around point estimates" },
-        { label: "Dataset Integrity", value: "467 Postings", note: "Deduplicated across 343 companies with 0 data leakage" }
+        { label: "Defensible Error", value: "$26.67K RMSE", note: "Rose from leaked $17.6K after strict GroupKFold validation" },
+        { label: "Conformal Coverage", value: "80% Interval", note: "Quantile bounds so you can question the number" },
+        { label: "Historical Grounding", value: "5 Postings", note: "Comparable historical job postings retrieved via embeddings" }
       ],
-      takeaway: "A better-looking metric does not mean a better model. Validation design and uncertainty quantification matter just as much as algorithm selection."
+      takeaway: "A better-looking metric doesn’t mean a better model."
     }
   ],
   experience: [
@@ -607,60 +625,60 @@ export const portfolioData: PortfolioData = {
   ],
   aiQualityPillars: [
     {
-      title: "Groundedness & Context Adherence",
-      metricType: "Faithfulness Score (0.0 – 1.0)",
-      description: "Verifies every statement generated by the LLM is directly substantiated by retrieved context chunks, preventing ungrounded extrapolations.",
-      failureMode: "Model hallucinates plausible-sounding specs or policy terms not present in the reference documents.",
-      mitigation: "Strict sentence-level attribution checking and automated rejection of unsubstantiated claims."
+      title: "Groundedness",
+      metricType: "Faithfulness score",
+      description: "Every claim in an answer has to be supported by something retrieved, not inferred.",
+      failureMode: "Plausible-sounding specs or policy terms that aren’t in any source document.",
+      mitigation: "Sentence-level attribution checks; unsupported claims rejected rather than returned."
     },
     {
-      title: "Retrieval Quality & Ranking",
-      metricType: "Recall@K, MRR, NDCG",
-      description: "Measures whether the relevant information is retrieved and positioned near the top of the context window for the synthesis model.",
-      failureMode: "Crucial pricing tiers or technical caveats are omitted or buried past token limits.",
-      mitigation: "Hybrid vector search + cross-encoder reranking with reciprocal rank fusion."
+      title: "Retrieval quality",
+      metricType: "Recall@K, MRR",
+      description: "Whether the right content was fetched at all, and whether it landed near the top of the context window.",
+      failureMode: "A pricing tier or caveat that exists in the docs but never reaches the model.",
+      mitigation: "Hybrid dense and keyword search with cross-encoder reranking."
     },
     {
-      title: "Deterministic Schema Contracts",
-      metricType: "Schema Validity Rate (100% Target)",
-      description: "Guarantees all model outputs strictly adhere to strongly typed Pydantic data schemas before downstream consumption.",
-      failureMode: "Unparsable JSON, mismatched data types, or missing keys causing downstream API exceptions.",
-      mitigation: "Constrained decoding, Pydantic type validation, and automated schema retry loops."
+      title: "Schema validity",
+      metricType: "Target 100%",
+      description: "Output has to parse. A correct answer in an unusable shape is still a failure.",
+      failureMode: "Unparsable JSON or a missing field that breaks a downstream API.",
+      mitigation: "Pydantic validation with retry on malformed output."
     },
     {
-      title: "Golden Datasets & Regression Gates",
-      metricType: "Test Suite Pass Rate",
-      description: "Curated reference question-answer pairs and edge cases evaluated before any model, prompt, or chunking configuration release.",
-      failureMode: "A prompt adjustment fixing one query degrades performance across previously working edge cases.",
-      mitigation: "Automated pre-merge regression tests in CI/CD pipeline blocking degraded builds."
+      title: "Regression gates",
+      metricType: "Test suite pass rate",
+      description: "A curated set of questions and edge cases that every prompt, model or chunking change has to clear.",
+      failureMode: "A prompt tweak that fixes one query and quietly breaks four others.",
+      mitigation: "Automated pre-merge tests that block a degraded build."
     },
     {
-      title: "Operational Telemetry & Budgeting",
-      metricType: "p95/p99 Latency & Token Cost / Req",
-      description: "Real-time observability into inference latency, prompt/completion token consumption, and dollar cost per transaction.",
-      failureMode: "Runaway LLM costs or severe latency degradation during peak enterprise business hours.",
-      mitigation: "Semantic caching in Redis, aggressive token budgeting, and concurrency auto-scaling on Kubernetes."
+      title: "Latency and cost",
+      metricType: "p95/p99, tokens per request",
+      description: "Cost per request is a release criterion, not something you discover on the invoice.",
+      failureMode: "Runaway spend or latency degradation at peak hours.",
+      mitigation: "Caching, token budgets, and autoscaling."
     },
     {
-      title: "Distribution & Drift Monitoring",
-      metricType: "Population Stability Index (PSI) & Drift",
-      description: "Continuous telemetry tracking feature distribution shifts, concept drift, and vocabulary evolution in incoming documents.",
-      failureMode: "Model performance degrades silently as client document templates change over time.",
-      mitigation: "Automated drift alerts in CloudWatch triggering scheduled continuous retraining in MLflow."
+      title: "Drift",
+      metricType: "PSI, distribution shift",
+      description: "Client document templates change. Model performance follows, usually without anyone noticing.",
+      failureMode: "Accuracy declining over months with no visible incident.",
+      mitigation: "Automated drift alerts triggering retraining on threshold breach."
     },
     {
-      title: "Confidence-Gated Human Escalation",
-      metricType: "Escalation Routing Ratio",
-      description: "Calculates calibrated confidence scores on both retrieval overlap and model prediction to identify uncertain edge cases.",
-      failureMode: "System silently generates answers with high confidence when context is ambiguous or insufficient.",
-      mitigation: "Dedicated human-in-the-loop review queue for any request below the confidence threshold."
+      title: "Escalation",
+      metricType: "Confidence routing",
+      description: "The system has to know when it doesn’t know.",
+      failureMode: "A confident answer built on ambiguous or insufficient context.",
+      mitigation: "Low-confidence requests route to a human review queue instead of guessing."
     },
     {
-      title: "Automated Rollback & Canary Gating",
-      metricType: "Deployment Health Score",
-      description: "Traffic is gradually split (5% → 25% → 100%) to new models on Kubernetes while error rates and latency are actively audited.",
-      failureMode: "A subtle model regression impacts 100% of production users immediately upon deployment.",
-      mitigation: "Automated rollback controller triggering instantaneous revert upon anomaly detection."
+      title: "Rollback",
+      metricType: "Canary gating",
+      description: "New models reach a slice of traffic before all of it.",
+      failureMode: "A subtle regression hitting every user at once.",
+      mitigation: "Progressive rollout with automated revert on anomaly."
     }
   ],
   skills: [

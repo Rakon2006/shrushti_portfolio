@@ -6,51 +6,70 @@ import {
   Cpu,
   FileCode2,
   UserCheck,
-  ShieldCheck,
   CheckCircle2,
   AlertTriangle,
-  ArrowRight,
-  Database,
-  Lock
+  Lightbulb,
+  Clock,
+  TrendingUp,
+  ShieldAlert,
+  ArrowRight
 } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
 import { SectionCurtain } from './SectionCurtain';
 import { MaskingTape } from './analog/MaskingTape';
-import { PushPin } from './analog/PushPin';
 
 export const QuotationPlatformExplainer: React.FC = () => {
-  const caseStudy = portfolioData.caseStudies[0];
-  const [activeStage, setActiveStage] = useState<number>(2); // Default to ML recommendation stage
-  const [confidenceScore, setConfidenceScore] = useState<number>(0.92);
+  const [activeStage, setActiveStage] = useState<number>(1); // Default to Recommendation Model stage
 
   const stages = [
     {
       num: '01',
-      title: 'Customer Requirement Ingestion',
-      subtitle: 'Unstructured RFP / Scope Extraction',
+      title: 'Requirement Ingestion',
+      subtitle: 'Unstructured to Structured Parsing',
       icon: <FileSpreadsheet size={18} />,
-      desc: 'Parses heterogeneous enterprise RFP documents, line-item requests, volume tiers, and delivery dates using layout-aware parsing and schema extraction.'
+      desc: 'Unstructured requirements parsed into a structured form.',
+      detail: 'Parses incoming client requests, line-item specs, and volume requirements from emails and documents into a normalized entity schema.'
     },
     {
       num: '02',
-      title: 'ML Recommendation Engine',
-      subtitle: 'Candidate Item & Price Prediction',
+      title: 'Recommendation Model',
+      subtitle: 'Product & Line-Item Prediction',
       icon: <Cpu size={18} />,
-      desc: 'PyTorch and Scikit-learn hybrid models vector-match extracted requirements against the 10,000+ catalogue items, computing ranked candidate bills-of-materials.'
+      desc: 'Predicts relevant products and line items.',
+      detail: 'Model matches requirement embeddings against the product catalogue, scoring candidates with confidence thresholds and handling catalogue skew.'
     },
     {
       num: '03',
-      title: 'LLM Proposal Synthesis',
+      title: 'LLM Drafting',
       subtitle: 'Type-Safe Output Validation',
       icon: <FileCode2 size={18} />,
-      desc: 'Orchestrates prompt chains using strict Pydantic JSON schemas. Synthesizes contextual proposal narratives while ensuring price numbers match the ERP catalog.'
+      desc: 'Composes the proposal text, output constrained to a schema.',
+      detail: 'Composes proposal narrative while strictly conforming to Pydantic JSON schemas. Pricing and item codes flow straight into downstream systems without manual re-keying.'
     },
     {
       num: '04',
-      title: 'Human Review & Approval',
+      title: 'Human Approval',
       subtitle: 'Confidence-Gated Escalation Gate',
       icon: <UserCheck size={18} />,
-      desc: 'Predictions with confidence < 0.85 are highlighted and routed to senior quotation estimators. Approved adjustments feed active continuous learning datasets.'
+      desc: 'Low-confidence predictions flagged; a reviewer signs off before anything reaches a client.',
+      detail: 'Predictions below the calibrated confidence threshold trigger review flags with supporting evidence. A human signs off before anything reaches a customer.'
+    }
+  ];
+
+  const decisions = [
+    {
+      num: '01',
+      title: 'Model first, language second',
+      desc: 'The sequence mattered more than either component. Most of the value was in the prediction, so that got built and validated before the drafting layer existed.'
+    },
+    {
+      num: '02',
+      title: 'Structured outputs over fluent prose',
+      desc: 'My first version returned well-written proposals. The content was usually right, but pricing and line items still had to be re-keyed into downstream systems by hand — which erased most of the time saving. I rebuilt it with type-safe schemas so data flows through without manual correction. The failure that mattered wasn’t a wrong answer, it was an unusable one.'
+    },
+    {
+      num: '03',
+      title: 'Precision over coverage',
+      desc: 'I tuned the model to suggest fewer items with higher confidence rather than more items with lower. A missing suggestion costs a reviewer thirty seconds. A wrong one that reaches a client costs considerably more.'
     }
   ];
 
@@ -65,7 +84,7 @@ export const QuotationPlatformExplainer: React.FC = () => {
         <SectionCurtain
           num="02"
           title="AI QUOTATION & RECOMMENDATION PLATFORM"
-          subtitle="SYSTEM ARCHITECTURE"
+          subtitle="WEROUTE SYSTEMS · 2024–2025"
           bgColor="var(--color-marker-red)"
           textColor="var(--color-paper-white)"
         >
@@ -79,41 +98,59 @@ export const QuotationPlatformExplainer: React.FC = () => {
             padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2.5rem)',
             display: 'flex',
             flexDirection: 'column',
-            gap: '2.5rem'
+            gap: '3rem'
           }}
         >
-          {/* Section Header */}
+          {/* Header & Meta */}
           <div style={{ maxWidth: '880px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.65rem', flexWrap: 'wrap' }}>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-marker-red)', fontWeight: 700, letterSpacing: '0.15em' }}>
-                CASE STUDY 01 / DEEP DIVE
+                CASE STUDY 01 — AI QUOTATION & RECOMMENDATION PLATFORM
               </span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', background: '#EEE', padding: '2px 8px', borderRadius: '2px', color: '#555' }}>
-                ROLE: LEAD DEVELOPER · WEROUTE SYSTEMS
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', background: '#EEE', padding: '3px 10px', borderRadius: '2px', color: '#444', fontWeight: 600 }}>
+                Role: Lead Developer · WeRoute Systems · 2024–2025
               </span>
             </div>
 
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontSize: 'clamp(2.2rem, 3.8vw, 3.2rem)',
                 fontWeight: 900,
                 letterSpacing: '-0.025em',
                 lineHeight: 1.1,
                 color: 'var(--color-ink-primary)'
               }}
             >
-              From Raw Customer Requirements <br />
-              <span style={{ color: 'var(--color-marker-red)' }}>to Verified Enterprise Quotations.</span>
+              The Problem
             </h2>
 
-            <p style={{ marginTop: '0.75rem', fontSize: '0.98rem', lineHeight: 1.6, color: 'var(--color-ink-secondary)' }}>
-              Enterprise proposal creation previously required staff to search product catalogues, identify relevant items, and assemble quotations manually.
-              Srushti designed and led the development of a hybrid AI platform integrating ML product recommendation, structured LLM drafting, and human-in-the-loop review.
-            </p>
+            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.9rem', fontSize: '1rem', lineHeight: 1.65, color: 'var(--color-ink-secondary)' }}>
+              <p style={{ margin: 0 }}>
+                Sales built every client quotation by hand. Someone read a requirement, searched the product catalogue, picked line items, worked out pricing, and wrote the proposal. About two hours per quote, and two people given the same requirement would produce noticeably different quotes.
+              </p>
+
+              <div
+                style={{
+                  borderLeft: '3px solid var(--color-marker-red)',
+                  padding: '0.6rem 1.1rem',
+                  background: 'rgba(196, 59, 44, 0.04)',
+                  fontStyle: 'italic',
+                  color: 'var(--color-ink-primary)',
+                  fontWeight: 500,
+                  fontSize: '1.05rem'
+                }}
+              >
+                The brief I got was one sentence: “can AI help with quotations?”
+              </div>
+
+              <p style={{ margin: 0 }}>
+                Before writing anything, I sat with two of them and watched the whole process. That hour decided the project. I’d assumed the slow part was writing the proposal — it took fifteen minutes. The slow part was the catalogue: scrolling, cross-referencing, checking compatibility, deciding what belonged. If I’d built what was asked for, I’d have automated the fifteen minutes.
+              </p>
+            </div>
           </div>
 
-          {/* Interactive Workflow Pipeline */}
+          {/* How it works */}
           <div
             style={{
               backgroundColor: 'var(--color-paper-card)',
@@ -126,20 +163,17 @@ export const QuotationPlatformExplainer: React.FC = () => {
           >
             <MaskingTape position="top-center" width={80} rotate={-1} style={{ top: -10 }} />
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(28,27,25,0.08)', paddingBottom: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.75rem' }}>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-ink-primary)' }}>
-                INTERACTIVE PIPELINE TRACE (CLICK A STAGE TO INSPECT)
-              </span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--color-ink-muted)' }}>
-                CONFIDENTIALITY: SIMPLIFIED CONCEPTUAL REPRESENTATION
+            <div style={{ borderBottom: '1px solid rgba(28,27,25,0.08)', paddingBottom: '0.85rem', marginBottom: '1.5rem' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-ink-primary)', letterSpacing: '0.08em' }}>
+                HOW IT WORKS
               </span>
             </div>
 
-            {/* Stages Row */}
+            {/* Stages Grid */}
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
                 gap: '12px',
                 marginBottom: '2rem'
               }}
@@ -173,8 +207,8 @@ export const QuotationPlatformExplainer: React.FC = () => {
                     <span style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 800, lineHeight: 1.2 }}>
                       {st.title}
                     </span>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: isActive ? '#AAA' : '#777' }}>
-                      {st.subtitle}
+                    <span style={{ fontSize: '0.78rem', lineHeight: 1.4, color: isActive ? '#CCC' : 'var(--color-ink-secondary)' }}>
+                      {st.desc}
                     </span>
                   </button>
                 );
@@ -184,109 +218,179 @@ export const QuotationPlatformExplainer: React.FC = () => {
             {/* Active Stage Detailed Breakdown */}
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                gap: '2rem',
                 backgroundColor: '#FAF7F0',
                 border: '1px solid rgba(28,27,25,0.08)',
-                padding: '20px',
+                padding: '24px',
                 borderRadius: '2px'
               }}
             >
-              {/* Detailed Description */}
-              <div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--color-marker-red)', fontWeight: 700, display: 'block', marginBottom: '4px' }}>
-                  STAGE {stages[activeStage].num} ARCHITECTURE & CONTROLS
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--color-marker-red)', fontWeight: 700, letterSpacing: '0.08em' }}>
+                  STAGE {stages[activeStage].num} — {stages[activeStage].title.toUpperCase()}
                 </span>
-                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-ink-primary)', marginBottom: '8px' }}>
-                  {stages[activeStage].title}
-                </h4>
-                <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'var(--color-ink-secondary)', marginBottom: '1rem' }}>
-                  {stages[activeStage].desc}
-                </p>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.82rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <CheckCircle2 size={14} color="var(--color-muted-green)" />
-                    <span><strong>Key Decision:</strong> Type-safe Pydantic schema validation for all downstream ERP parameters.</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <CheckCircle2 size={14} color="var(--color-muted-green)" />
-                    <span><strong>Trade-off:</strong> Prioritizing item prediction precision over coverage to prevent incorrect quotes.</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <CheckCircle2 size={14} color="var(--color-muted-green)" />
-                    <span><strong>Observability:</strong> Real-time latency tracking and model confidence telemetry logged to MLflow.</span>
-                  </div>
-                </div>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', background: 'rgba(28,27,25,0.06)', padding: '2px 8px', borderRadius: '2px', color: 'var(--color-ink-muted)' }}>
+                  STAGE ARCHITECTURE & CONTROLS
+                </span>
               </div>
 
-              {/* Simulated Synthetic Schema / Output Card (Illustrative) */}
-              <div
-                style={{
-                  backgroundColor: '#1E1D1A',
-                  color: '#FAF7F0',
-                  padding: '16px',
-                  borderRadius: '3px',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  border: '1px solid #333'
-                }}
-              >
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #333', paddingBottom: '6px', marginBottom: '10px' }}>
-                    <span style={{ color: 'var(--color-highlighter)', fontWeight: 700 }}>
-                      SYNTHETIC_SCHEMA_PREVIEW.JSON
-                    </span>
-                    <span style={{ color: '#888' }}>TYPE-SAFE DRAFT</span>
-                  </div>
+              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-ink-primary)', marginBottom: '8px' }}>
+                {stages[activeStage].title}
+              </h4>
 
-                  <pre style={{ margin: 0, color: '#CCC', lineHeight: 1.45, overflowX: 'auto' }}>
-                    {`{
-  "quote_id": "QT-2026-0891A",
-  "client_tier": "Enterprise-Gold",
-  "recommended_items": [
-    { "sku": "SYS-OPTIC-400G", "rank": 1, "conf": ${confidenceScore} },
-    { "sku": "CAB-FIBER-LC-10M", "rank": 2, "conf": 0.94 }
-  ],
-  "llm_draft_status": "VALIDATED_JSON",
-  "requires_human_approval": ${confidenceScore < 0.85 ? 'true' : 'false'},
-  "approval_reason": ${confidenceScore < 0.85 ? '"Confidence below 0.85 threshold"' : '"Passes automated release rules"'}
-}`}
-                  </pre>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: 'var(--color-ink-secondary)', marginBottom: '1.25rem' }}>
+                {stages[activeStage].detail}
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.85rem', borderTop: '1px dashed rgba(28,27,25,0.1)', paddingTop: '14px' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <CheckCircle2 size={15} color="var(--color-muted-green)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <span><strong>Execution:</strong> {stages[activeStage].desc}</span>
                 </div>
-
-                <div style={{ marginTop: '14px', paddingTop: '10px', borderTop: '1px solid #2A2926', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '0.62rem', color: '#888' }}>
-                    Confidence Simulation: {confidenceScore}
-                  </span>
-                  <button
-                    onClick={() => setConfidenceScore(confidenceScore === 0.92 ? 0.78 : 0.92)}
-                    style={{
-                      background: '#333',
-                      color: '#FAF7F0',
-                      border: 'none',
-                      padding: '3px 8px',
-                      borderRadius: '2px',
-                      cursor: 'pointer',
-                      fontSize: '0.62rem'
-                    }}
-                  >
-                    Simulate {confidenceScore === 0.92 ? 'Low Confidence (<0.85)' : 'High Confidence (0.92)'}
-                  </button>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <CheckCircle2 size={15} color="var(--color-muted-green)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <span><strong>Quality Control:</strong> Continuous evaluation, schema validation, and confidence calibration.</span>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Confidentiality Notice Caption */}
-            <div style={{ marginTop: '1.25rem', textAlign: 'center' }}>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--color-ink-muted)', fontStyle: 'italic' }}>
-                Illustrative system diagram; implementation details simplified for confidentiality. Selected professional work at WeRoute Systems.
+          {/* Three Decisions */}
+          <div>
+            <div style={{ borderBottom: '1px solid rgba(28,27,25,0.12)', paddingBottom: '0.65rem', marginBottom: '1.25rem' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-marker-red)', fontWeight: 700, letterSpacing: '0.12em' }}>
+                ARCHITECTURAL TRADE-OFFS
+              </span>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', fontWeight: 900, color: 'var(--color-ink-primary)', margin: '0.2rem 0 0' }}>
+                Three Decisions
+              </h3>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+              {decisions.map((dec) => (
+                <div
+                  key={dec.num}
+                  style={{
+                    background: '#FAF7F0',
+                    border: '1px solid rgba(28,27,25,0.12)',
+                    padding: '1.25rem',
+                    borderRadius: '2px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.5rem'
+                  }}
+                >
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--color-marker-red)', fontWeight: 700 }}>
+                    DECISION {dec.num}
+                  </span>
+                  <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-ink-primary)', margin: 0 }}>
+                    {dec.title}
+                  </h4>
+                  <p style={{ margin: 0, fontSize: '0.88rem', lineHeight: 1.55, color: 'var(--color-ink-secondary)' }}>
+                    {dec.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* What I Got Wrong First */}
+          <div
+            style={{
+              background: '#FFFDF8',
+              border: '1px solid rgba(28,27,25,0.12)',
+              borderLeft: '4px solid var(--color-marker-red)',
+              padding: '1.5rem',
+              borderRadius: '2px'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+              <AlertTriangle size={16} color="var(--color-marker-red)" />
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-marker-red)', letterSpacing: '0.08em' }}>
+                WHAT I GOT WRONG FIRST
               </span>
             </div>
+            <p style={{ margin: 0, fontSize: '0.94rem', lineHeight: 1.65, color: 'var(--color-ink-primary)' }}>
+              The training data was messier than I expected. Years of historical quotations with the same product spelled four different ways, free-text requirements, duplicates. My first model also learned to predict the popular products, because a small set of items appeared in most quotes — the class distribution was badly skewed and I hadn’t handled it explicitly. Fixing that was most of the modelling work.
+            </p>
+          </div>
+
+          {/* Results & Error Analysis */}
+          <div>
+            <div style={{ borderBottom: '1px solid rgba(28,27,25,0.12)', paddingBottom: '0.65rem', marginBottom: '1.25rem' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-cobalt)', fontWeight: 700, letterSpacing: '0.12em' }}>
+                PRODUCTION METRICS & ERROR ANALYSIS
+              </span>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', fontWeight: 900, color: 'var(--color-ink-primary)', margin: '0.2rem 0 0' }}>
+                Results
+              </h3>
+            </div>
+
+            {/* 3 Metric Cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
+              <div style={{ background: '#FAF7F0', border: '1px solid rgba(28,27,25,0.12)', padding: '1.2rem', borderRadius: '2px' }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 900, color: 'var(--color-cobalt)', display: 'block', lineHeight: 1.1 }}>
+                  87%
+                </span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', fontWeight: 700, color: 'var(--color-ink-primary)', display: 'block', marginTop: '4px' }}>
+                  Top recommendation accuracy
+                </span>
+                <span style={{ fontSize: '0.76rem', color: 'var(--color-ink-muted)' }}>
+                  Recall@K on a held-out set
+                </span>
+              </div>
+
+              <div style={{ background: '#FAF7F0', border: '1px solid rgba(28,27,25,0.12)', padding: '1.2rem', borderRadius: '2px' }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 900, color: 'var(--color-cobalt)', display: 'block', lineHeight: 1.1 }}>
+                  70% faster
+                </span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', fontWeight: 700, color: 'var(--color-ink-primary)', display: 'block', marginTop: '4px' }}>
+                  Quotation turnaround
+                </span>
+                <span style={{ fontSize: '0.76rem', color: 'var(--color-ink-muted)' }}>
+                  Down from ~2 hours per quote
+                </span>
+              </div>
+
+              <div style={{ background: '#FAF7F0', border: '1px solid rgba(28,27,25,0.12)', padding: '1.2rem', borderRadius: '2px' }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 900, color: 'var(--color-cobalt)', display: 'block', lineHeight: 1.1 }}>
+                  Zero
+                </span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', fontWeight: 700, color: 'var(--color-ink-primary)', display: 'block', marginTop: '4px' }}>
+                  Manual correction
+                </span>
+                <span style={{ fontSize: '0.76rem', color: 'var(--color-ink-muted)' }}>
+                  On structured line-item output
+                </span>
+              </div>
+            </div>
+
+            {/* Error Analysis Paragraph */}
+            <div style={{ background: '#FAF7F0', border: '1px solid rgba(28,27,25,0.1)', padding: '1.2rem', borderRadius: '2px' }}>
+              <p style={{ margin: 0, fontSize: '0.92rem', lineHeight: 1.6, color: 'var(--color-ink-secondary)' }}>
+                The aggregate accuracy was less useful than the error analysis. Looking at which requirement types failed told me more than the overall number — ambiguous or unusually short requirements were where it struggled, which is also where a human would ask a clarifying question. That shaped where the confidence threshold sat.
+              </p>
+            </div>
+          </div>
+
+          {/* What I'd Do Differently */}
+          <div
+            style={{
+              background: '#FAF7F0',
+              border: '1px solid rgba(28,27,25,0.12)',
+              borderLeft: '4px solid var(--color-ink-primary)',
+              padding: '1.5rem',
+              borderRadius: '2px'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+              <Lightbulb size={16} color="var(--color-ink-primary)" />
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-ink-primary)', letterSpacing: '0.08em' }}>
+                WHAT I’D DO DIFFERENTLY
+              </span>
+            </div>
+            <p style={{ margin: 0, fontSize: '0.94rem', lineHeight: 1.65, color: 'var(--color-ink-primary)' }}>
+              Design the output contract before tuning the model. The integration format nearly killed the time saving, and it was knowable from day one.
+            </p>
           </div>
         </div>
         </SectionCurtain>

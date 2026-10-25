@@ -152,6 +152,158 @@
   }
 }
 
+/* ==========================================================================
+   AI Quality & Evaluation Pillar Cards: Tactile Engineering Cards
+   ========================================================================== */
+.ai-quality-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.ai-quality-card {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 8px;
+  padding: 22px 22px 18px;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.03);
+  display: flex;
+  flex-direction: column;
+  justifyContent: space-between;
+  gap: 16px;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+  will-change: transform, box-shadow;
+  cursor: default;
+  overflow: hidden;
+}
+
+/* Engineering Top Registration Accent Line */
+.ai-quality-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-cobalt, #0284C7);
+  opacity: 0.35;
+  transition: opacity 0.25s ease, height 0.25s ease;
+}
+
+.ai-quality-card:hover {
+  transform: translateY(-4px);
+  background-color: #FFFFFF;
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: 0 16px 36px -6px rgba(2, 132, 199, 0.12),
+    0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.ai-quality-card:hover::before {
+  opacity: 1;
+  height: 3px;
+}
+
+.ai-quality-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ai-quality-card__index {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-cobalt, #334FA1);
+  letter-spacing: 0.06em;
+}
+
+.ai-quality-card__badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(51, 79, 161, 0.08);
+  color: var(--color-cobalt, #334FA1);
+  border: 1px solid rgba(51, 79, 161, 0.18);
+  padding: 3px 9px;
+  border-radius: 3px;
+  letter-spacing: 0.03em;
+  transition: all 0.2s ease;
+}
+
+.ai-quality-card:hover .ai-quality-card__badge {
+  background: rgba(51, 79, 161, 0.15);
+  border-color: rgba(51, 79, 161, 0.35);
+}
+
+.ai-quality-card__title {
+  font-family: var(--font-display, 'Fraunces', serif);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--color-ink-primary, #1C1B19);
+  line-height: 1.22;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.015em;
+}
+
+.ai-quality-card__desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-ink-secondary, #47443E);
+  margin: 0;
+}
+
+/* Structured Failure & Control Inspection Box */
+.ai-quality-card__inspection {
+  background: rgba(28, 27, 25, 0.03);
+  border: 1px dashed rgba(28, 27, 25, 0.14);
+  border-radius: 3px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.ai-quality-card:hover .ai-quality-card__inspection {
+  background: rgba(51, 79, 161, 0.03);
+  border-color: rgba(51, 79, 161, 0.25);
+}
+
+.ai-quality-card__row {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.ai-quality-card__row-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-quality-card__row-label--fail {
+  color: var(--color-marker-red, #C43B2C);
+}
+
+.ai-quality-card__row-label--control {
+  color: var(--color-muted-green, #4A7A5E);
+}
+
+.ai-quality-card__row-val {
+  color: var(--color-ink-primary, #1C1B19);
+}
+
 /* Accessibility & Reduced Motion Overrides */
 @media (prefers-reduced-motion: reduce) {
   .scroll-chapter {

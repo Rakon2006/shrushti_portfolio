@@ -35,7 +35,7 @@ export const ExperienceSection: React.FC = () => {
 
         {/* Theatrical Stage Curtain Section Reveal */}
         <SectionCurtain
-          num="06"
+          num="03"
           title="PROFESSIONAL EXPERIENCE."
           subtitle="ENGINEERING TIMELINE"
           bgColor="var(--color-ink-primary)"
@@ -88,8 +88,8 @@ export const ExperienceSection: React.FC = () => {
                 key={exp.company}
                 style={{
                   backgroundColor: 'var(--color-paper-card)',
-                  border: '1px solid rgba(28,27,25,0.12)',
-                  borderRadius: '3px',
+                  border: '1px solid rgba(15,23,42,0.08)',
+                  borderRadius: '8px',
                   padding: 'clamp(1.5rem, 3.5vw, 2.5rem)',
                   boxShadow: 'var(--shadow-paper-lift)',
                   position: 'relative'
@@ -133,10 +133,10 @@ export const ExperienceSection: React.FC = () => {
                     <div
                       key={dom.title}
                       style={{
-                        backgroundColor: '#FAF7F0',
-                        border: '1px solid rgba(28,27,25,0.08)',
+                        backgroundColor: '#FFFFFF',
+                        border: '1px solid rgba(15,23,42,0.06)',
                         padding: '16px',
-                        borderRadius: '2px'
+                        borderRadius: '6px'
                       }}
                     >
                       <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-cobalt)', marginBottom: '10px' }}>

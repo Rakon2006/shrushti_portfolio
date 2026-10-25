@@ -1,33 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
-import {
-  ShieldAlert,
-  Cpu,
-  Database,
-  Layers,
-  Lock,
-  CheckCircle,
-  ArrowRight,
-  Activity,
-  Eye,
-  EyeOff,
-  GitBranch,
-  FileText,
-  Workflow
-} from 'lucide-react';
-import { portfolioData, type CaseStudy, type MetricItem } from '../data/portfolioData';
+import React from 'react';
 import { SectionCurtain } from './SectionCurtain';
-import { MaskingTape } from './analog/MaskingTape';
-import { PushPin } from './analog/PushPin';
-import { InkHighlight } from './analog/InkHighlight';
 import { HorizontalCaseStudies } from './HorizontalCaseStudies';
 import { PublicProjectsSection } from './PublicProjectsSection';
 import { WorkSectionBlueprint } from './background/WorkSectionBlueprint';
 
 export const ProjectTimeline: React.FC = () => {
-  const { caseStudies } = portfolioData;
-  const [disclosureMode, setDisclosureMode] = useState<boolean>(false); // Default false per confidentiality rules!
 
   return (
     <section
@@ -82,25 +61,6 @@ export const ProjectTimeline: React.FC = () => {
               >
                 FIELD NOTES / 01 PROFESSIONAL WORK
               </span>
-
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  background: 'rgba(227, 75, 60, 0.08)',
-                  border: '1px solid rgba(227, 75, 60, 0.3)',
-                  padding: '2px 8px',
-                  borderRadius: '2px',
-                  fontSize: '0.65rem',
-                  fontFamily: 'var(--font-mono)',
-                  color: 'var(--color-marker-red)',
-                  fontWeight: 600
-                }}
-              >
-                <Lock size={12} />
-                <span>CONFIDENTIALITY-FIRST PROFESSIONAL CASE STUDIES</span>
-              </div>
             </div>
 
             <h2
@@ -113,8 +73,8 @@ export const ProjectTimeline: React.FC = () => {
                 color: 'var(--color-ink-primary)'
               }}
             >
-              Enterprise Systems. <br />
-              <span style={{ color: 'var(--color-cobalt)' }}>Built for Mission-Critical Operations.</span>
+              Three Systems. <br />
+              <span style={{ color: 'var(--color-cobalt)' }}>Still Running in Production.</span>
             </h2>
 
             <p
@@ -125,61 +85,14 @@ export const ProjectTimeline: React.FC = () => {
                 maxWidth: '780px'
               }}
             >
-              The following three featured AI architectures were developed as proprietary enterprise software at WeRoute Systems.
-              In strict accordance with professional IP agreements, private source code, internal repositories, and sensitive production data remain confidential.
-              Presented below are architectural system designs, engineering solutions, evaluation methodologies, and verified outcomes.
+              The three systems below were built at WeRoute Systems and are covered by client agreements, so I can’t share source code or production data. What I can share is the architecture, the decisions behind it, and what the results were.
             </p>
-
-            {/* Centralized Disclosure Policy & Interactive Authorization Toggle */}
-            <div
-              style={{
-                backgroundColor: 'rgba(240, 227, 87, 0.2)',
-                border: '1px solid rgba(240, 227, 87, 0.6)',
-                borderRadius: '3px',
-                padding: '12px 16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: '12px'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <ShieldAlert size={18} color="var(--color-marker-red)" />
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-ink-primary)' }}>
-                  <strong>Disclosure Status:</strong> {disclosureMode ? 'Numeric Metrics Unlocked (Authorized Mode)' : 'Qualitative Impact Only (Confidentiality Default)'}
-                </span>
-              </div>
-
-              <button
-                onClick={() => setDisclosureMode(!disclosureMode)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.72rem',
-                  fontWeight: 700,
-                  padding: '6px 12px',
-                  borderRadius: '2px',
-                  background: 'var(--color-ink-primary)',
-                  color: 'var(--color-paper-white)',
-                  cursor: 'pointer',
-                  border: 'none',
-                  transition: 'background 0.2s'
-                }}
-                title="Toggle Metric Disclosure View"
-              >
-                {disclosureMode ? <EyeOff size={14} color="#F0E357" /> : <Eye size={14} color="#F0E357" />}
-                <span>{disclosureMode ? 'HIDE NUMERIC METRICS' : 'PREVIEW AUTHORIZED METRICS'}</span>
-              </button>
-            </div>
           </div>
         </div>
         </SectionCurtain>
 
         {/* Dedicated Horizontal Case Studies Scroll Experience */}
-        <HorizontalCaseStudies disclosureMode={disclosureMode} />
+        <HorizontalCaseStudies />
 
         {/* Independent & Open-Source AI Systems: TicketPilot & PayLens */}
         <PublicProjectsSection />

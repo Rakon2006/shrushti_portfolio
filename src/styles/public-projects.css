@@ -78,39 +78,29 @@
    Individual Project Card (Scrapbook Editorial Sheet)
    -------------------------------------------------------------------------- */
 .public-project-card {
-  background-color: var(--color-paper-card, #F7F4EB);
-  border: 1px solid rgba(28, 27, 25, 0.14);
-  border-radius: 4px;
-  box-shadow: 0 14px 36px rgba(28, 27, 25, 0.1);
+  background-color: var(--color-paper-card, rgba(255, 255, 255, 0.95));
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
   position: relative;
   padding: clamp(1.75rem, 3.5vw, 3rem);
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
   will-change: transform;
 }
 
 .public-project-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 20px 48px rgba(28, 27, 25, 0.15);
+  border-color: rgba(2, 132, 199, 0.3);
+  box-shadow: 0 20px 48px -6px rgba(2, 132, 199, 0.1), 0 6px 16px rgba(15, 23, 42, 0.04);
 }
 
-.public-project-card.card--tilt-left {
-  transform: rotate(-0.35deg);
-}
-
-.public-project-card.card--tilt-left:hover {
-  transform: translateY(-3px) rotate(-0.15deg);
-}
-
+.public-project-card.card--tilt-left,
 .public-project-card.card--tilt-right {
-  transform: rotate(0.35deg);
-}
-
-.public-project-card.card--tilt-right:hover {
-  transform: translateY(-3px) rotate(0.15deg);
+  transform: none;
 }
 
 /* Card Header */

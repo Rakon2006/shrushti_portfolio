@@ -57,59 +57,7 @@ export const AiQualityBlueprint: React.FC = () => {
         </div>
       </div>
 
-      {/* ========================================================
-          RIGHT MARGIN: Cohesive Architectural Column (Aligned to Grid)
-         ======================================================== */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '48px',
-          right: 'clamp(10px, 2.2vw, 38px)',
-          width: '175px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-          gap: '14px',
-          pointerEvents: 'none'
-        }}
-      >
-        {/* 1. Confidence Note (Red Accent) */}
-        <div className="floating-technical-note floating-technical-note--red blueprint-tape-sway">
-          <span>CONFIDENCE ≥ 0.85</span>
-        </div>
 
-        {/* 2. Checkmark Matrix */}
-        <div style={{ width: '150px', height: '135px', opacity: 0.82 }}>
-          <svg viewBox="0 0 150 135" fill="none" style={{ width: '100%', height: '100%' }}>
-            <g transform="translate(10, 8)">
-              <rect x="0" y="0" width="130" height="26" rx="2" fill="rgba(252, 250, 244, 0.92)" stroke="rgba(52, 85, 164, 0.25)" />
-              <path d="M 12 13 L 17 18 L 26 7" stroke="var(--blueprint-blue)" strokeWidth="1.8" fill="none" />
-              <text x="34" y="17" fontFamily="var(--font-mono)" fontSize="7" fill="var(--blueprint-ink)">
-                Groundedness: 99.4%
-              </text>
-            </g>
-            <g transform="translate(10, 42)">
-              <rect x="0" y="0" width="130" height="26" rx="2" fill="rgba(252, 250, 244, 0.92)" stroke="rgba(52, 85, 164, 0.25)" />
-              <path d="M 12 13 L 17 18 L 26 7" stroke="var(--blueprint-blue)" strokeWidth="1.8" fill="none" />
-              <text x="34" y="17" fontFamily="var(--font-mono)" fontSize="7" fill="var(--blueprint-ink)">
-                Toxicity: &lt; 0.01%
-              </text>
-            </g>
-            <g transform="translate(10, 76)">
-              <rect x="0" y="0" width="130" height="26" rx="2" fill="rgba(252, 250, 244, 0.92)" stroke="rgba(240, 82, 67, 0.35)" />
-              <path d="M 12 13 L 17 18 L 26 7" stroke="var(--blueprint-red)" strokeWidth="1.8" fill="none" />
-              <text x="34" y="17" fontFamily="var(--font-mono)" fontSize="7" fill="var(--blueprint-ink)">
-                Hallucination Filter
-              </text>
-            </g>
-          </svg>
-        </div>
-
-        {/* 3. Safety Standard Note */}
-        <div className="floating-technical-note blueprint-tape-sway" style={{ marginTop: '2px' }}>
-          <span>GUARDRAILS: ACTIVE</span>
-        </div>
-      </div>
     </div>
   );
 };

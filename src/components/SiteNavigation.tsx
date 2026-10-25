@@ -13,13 +13,10 @@ interface NavPoint {
 
 const NAV_POINTS: NavPoint[] = [
   { id: 'chapter-work', num: '01', label: 'WORK', title: '01 Work & Case Studies' },
-  { id: 'chapter-quotation', num: '02', label: 'QUOTATION', title: '02 AI Quotation Platform' },
-  { id: 'chapter-assistant', num: '03', label: 'ASSISTANT', title: '03 Enterprise Chatbot & RAG' },
-  { id: 'chapter-mlops', num: '04', label: 'MLOPS', title: '04 Document Intelligence & MLOps' },
-  { id: 'chapter-quality', num: '05', label: 'QUALITY', title: '05 AI Evaluation & Quality' },
-  { id: 'chapter-experience', num: '06', label: 'EXPERIENCE', title: '06 Professional Experience' },
-  { id: 'chapter-skills', num: '07', label: 'AI STACK', title: '07 AI Engineering Stack' },
-  { id: 'chapter-colophon', num: '08', label: 'CONTACT', title: '08 Colophon & Contact' }
+  { id: 'chapter-quality', num: '02', label: 'QUALITY', title: '02 AI Evaluation & Quality' },
+  { id: 'chapter-experience', num: '03', label: 'EXPERIENCE', title: '03 Professional Experience' },
+  { id: 'chapter-skills', num: '04', label: 'AI STACK', title: '04 AI Engineering Stack' },
+  { id: 'chapter-colophon', num: '05', label: 'CONTACT', title: '05 Colophon & Contact' }
 ];
 
 export const SiteNavigation: React.FC = () => {
@@ -102,10 +99,10 @@ export const SiteNavigation: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 clamp(0.75rem, 2.5vw, 2.5rem)',
-        background: 'rgba(242, 239, 231, 0.94)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(28, 27, 25, 0.08)'
+        background: 'rgba(255, 255, 255, 0.88)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(15, 23, 42, 0.08)'
       }}
     >
       {/* Brand / Professional Mark */}
@@ -193,15 +190,15 @@ export const SiteNavigation: React.FC = () => {
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
                 color: isActive ? 'var(--color-ink-primary)' : 'var(--color-ink-secondary)',
-                backgroundColor: isActive ? 'rgba(232, 226, 212, 0.95)' : 'transparent',
-                boxShadow: isActive ? '0 1px 3px rgba(28, 27, 25, 0.12)' : 'none',
-                transform: isActive ? 'rotate(-0.5deg)' : 'none',
+                backgroundColor: isActive ? 'rgba(15, 23, 42, 0.06)' : 'transparent',
+                boxShadow: isActive ? '0 1px 2px rgba(15, 23, 42, 0.06)' : 'none',
+                transform: 'none',
                 fontWeight: isActive ? 700 : 500,
                 border: isActive
-                  ? '1px solid rgba(28, 27, 25, 0.14)'
+                  ? '1px solid rgba(15, 23, 42, 0.12)'
                   : '1px solid transparent',
-                padding: '0.24rem clamp(0.32rem, 0.5vw, 0.55rem)',
-                borderRadius: '2px',
+                padding: '0.24rem clamp(0.35rem, 0.5vw, 0.6rem)',
+                borderRadius: '4px',
                 whiteSpace: 'nowrap',
                 cursor: 'pointer',
                 transition: 'all 0.18s ease-out',

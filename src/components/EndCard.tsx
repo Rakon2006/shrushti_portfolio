@@ -31,9 +31,9 @@ export const EndCard: React.FC = () => {
       <div className="scroll-stage">
         {/* Theatrical Stage Curtain Section Reveal */}
         <SectionCurtain
-          num="08"
-          title="LET'S BUILD RELIABLE AI SYSTEMS."
-          subtitle="COLOPHON & CONTACT"
+          num="05"
+          title="CONTACT US"
+          subtitle="DIRECT INQUIRIES & ROLES"
           bgColor="var(--color-ink-primary)"
           textColor="var(--color-paper-white)"
         >
@@ -54,8 +54,8 @@ export const EndCard: React.FC = () => {
           <div
             style={{
               backgroundColor: 'var(--color-paper-card)',
-              border: '1px solid rgba(28,27,25,0.14)',
-              borderRadius: '3px',
+              border: '1px solid rgba(15,23,42,0.08)',
+              borderRadius: '12px',
               padding: 'clamp(2rem, 5vw, 3.5rem)',
               boxShadow: 'var(--shadow-paper-float)',
               position: 'relative',
@@ -66,27 +66,33 @@ export const EndCard: React.FC = () => {
           >
             <MaskingTape position="top-center" width={85} rotate={-1} style={{ top: -10 }} />
 
-            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-cobalt)', fontWeight: 700, display: 'block', marginBottom: '8px' }}>
-                OPEN TO SENIOR AI/ML ENGINEERING DISCUSSIONS
+            <div style={{ textAlign: 'center', marginBottom: '2.2rem' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-cobalt)', fontWeight: 700, display: 'block', marginBottom: '8px' }}>
+                CONTACT US
               </span>
 
               <h2
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)',
+                  fontSize: 'clamp(2.2rem, 4.2vw, 3.4rem)',
                   fontWeight: 900,
                   letterSpacing: '-0.035em',
-                  lineHeight: 1.05,
+                  lineHeight: 1.1,
                   color: 'var(--color-ink-primary)'
                 }}
               >
-                Let's Build <br />
-                <span style={{ color: 'var(--color-marker-red)' }}>Reliable AI Systems.</span>
+                Open to Senior AI/ML Engineer <br />
+                <span style={{ color: 'var(--color-marker-red)' }}>and AI Engineer roles.</span>
               </h2>
 
-              <p style={{ marginTop: '1rem', fontSize: '1.05rem', lineHeight: 1.6, color: 'var(--color-ink-secondary)', maxWidth: '620px', margin: '1rem auto 0' }}>
-                Whether designing production retrieval systems, tuning recommendation algorithms, establishing MLOps pipelines, or leading technical AI squads — let's connect.
+              <p style={{ marginTop: '1.25rem', fontSize: '1.08rem', lineHeight: 1.6, color: 'var(--color-ink-primary)', maxWidth: '620px', margin: '1.25rem auto 0', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
+                <a href={`mailto:${builder.email}`} style={{ color: 'var(--color-cobalt)', textDecoration: 'none' }}>
+                  {builder.email}
+                </a>
+                <span style={{ margin: '0 0.5rem', color: 'var(--color-ink-muted)' }}>·</span>
+                <a href={`tel:${builder.phone}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                  {builder.phone}
+                </a>
               </p>
             </div>
 
@@ -102,9 +108,9 @@ export const EndCard: React.FC = () => {
               {/* Email Card */}
               <div
                 style={{
-                  backgroundColor: '#FAF7F0',
-                  border: '1px solid rgba(28,27,25,0.1)',
-                  borderRadius: '2px',
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid rgba(15,23,42,0.08)',
+                  borderRadius: '8px',
                   padding: '16px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -153,9 +159,9 @@ export const EndCard: React.FC = () => {
               {/* Phone Card */}
               <div
                 style={{
-                  backgroundColor: '#FAF7F0',
-                  border: '1px solid rgba(28,27,25,0.1)',
-                  borderRadius: '2px',
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid rgba(15,23,42,0.08)',
+                  borderRadius: '8px',
                   padding: '16px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -185,9 +191,9 @@ export const EndCard: React.FC = () => {
               {/* Location Card */}
               <div
                 style={{
-                  backgroundColor: '#FAF7F0',
-                  border: '1px solid rgba(28,27,25,0.1)',
-                  borderRadius: '2px',
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid rgba(15,23,42,0.08)',
+                  borderRadius: '8px',
                   padding: '16px',
                   display: 'flex',
                   flexDirection: 'column',

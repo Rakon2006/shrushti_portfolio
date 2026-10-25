@@ -49,8 +49,8 @@ export const EnterpriseChatbotExplainer: React.FC = () => {
       <div className="scroll-stage">
         {/* Theatrical Stage Curtain Section Reveal */}
         <SectionCurtain
-          num="03"
-          title="ENTERPRISE NLP CHATBOT & KNOWLEDGE ASSISTANT"
+          num="02"
+          title="ENTERPRISE KNOWLEDGE ASSISTANT"
           subtitle="RETRIEVAL & GROUNDING ARCHITECTURE"
           bgColor="var(--color-ink-primary)"
           textColor="var(--color-paper-white)"
@@ -94,8 +94,8 @@ export const EnterpriseChatbotExplainer: React.FC = () => {
             </h2>
 
             <p style={{ marginTop: '0.75rem', fontSize: '0.98rem', lineHeight: 1.6, color: 'var(--color-ink-secondary)' }}>
-              Repeated inquiries regarding technical specifications, enterprise pricing, and internal policies were overburdening domain specialists.
-              Srushti architected a production RAG system integrating hierarchical document chunking, hybrid retrieval, cross-encoder reranking, and citation-bound generation.
+              The same questions kept reaching a handful of subject matter experts, burning senior time on answers that already existed in documentation.
+              I built a retrieval-grounded assistant that cites its sources and escalates to a person when confidence drops, rather than guessing. Most of the work went into the layer underneath: document taxonomy, chunking strategy, metadata schema. That’s where answer relevance actually came from, not the model.
             </p>
           </div>
 

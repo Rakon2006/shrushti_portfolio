@@ -48,7 +48,7 @@ export const PublicProjectsSection: React.FC = () => {
         </h3>
 
         <p className="public-projects__intro">
-          While the three enterprise architectures above operate under corporate confidentiality agreements, the following two full-stack projects are public, open-source repositories. Each system tackles fundamental AI reliability challenges—<strong>calibrated abstention under uncertainty</strong> and <strong>data leakage elimination in predictive ML</strong>—complete with live deployments and reproducible code.
+          Two systems I built in the open, with live demos and reproducible code. Both are about the same problem: knowing when not to trust the model.
         </p>
       </div>
 

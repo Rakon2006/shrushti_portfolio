@@ -130,17 +130,31 @@ export const EditorialCover: React.FC = () => {
               </h1>
 
               {/* Supporting Lede */}
-              <p
+              <div
                 className="portfolio-hero__lede"
                 style={{
                   maxWidth: '580px',
                   marginTop: '1rem',
                   fontSize: '1.02rem',
-                  lineHeight: '1.6'
+                  lineHeight: '1.6',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.75rem'
                 }}
               >
-                {builder.openingLede}
-              </p>
+                {builder.openingLede.split('\n\n').map((para, idx) => (
+                  <p
+                    key={idx}
+                    style={{
+                      margin: 0,
+                      fontWeight: idx === 0 ? 500 : 400,
+                      color: idx === 0 ? 'var(--hero-ink, #111)' : 'inherit'
+                    }}
+                  >
+                    {para}
+                  </p>
+                ))}
+              </div>
 
               {/* Hero Call to Actions */}
               <div
